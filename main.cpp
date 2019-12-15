@@ -27,15 +27,64 @@ DEALINGS IN THE SOFTWARE.
 
 MicroBit uBit;
 
+//
+// Scales the given value that is in the -1024 to 1024 range
+// int a value between 0 and 4.
+//
+int pixel_from_g(int value)
+{
+    int x = 0;
+
+    if (value > -750)
+        x++;
+    if (value > -250)
+        x++;
+    if (value > 250)
+        x++;
+    if (value > 750)
+        x++;
+
+    return x;
+}
+
+void space_invaders(){
+	player.x = 0;
+	player.y = 2;
+
+	while(1){
+		int y = pixel_from_g(uBit.accelerometer.getX());
+
+		uBit.display.image.clear();
+		uBit.display.image.setPixelValue(player.x, y, 255);
+		
+	}
+
+}
+
+
 int main()
 {
     // Initialise the micro:bit runtime.
     uBit.init();
 
-    // Setup a simple triangular waveform.
-    MicroBitImage img("1 0 0 0 0 0 0 0 0 1\n0 1 0 0 0 0 0 0 1 0\n0 0 1 0 0 0 0 1 0 0\n0 0 0 1 0 0 1 0 0 0\n0 0 0 0 1 1 0 0 0 0\n");
-     
+    //
+    // Periodically read the accelerometer x and y values, and plot a 
+    // scaled version of this ont the display. 
+    //
+    space_invaders();
     while(1)
-        uBit.display.scroll(img, 80, -1);
+    {
+        int x = pixel_from_g(uBit.accelerometer.getX());
+        int y = pixel_from_g(uBit.accelerometer.getY());
+
+        uBit.display.image.clear();
+        uBit.display.image.setPixelValue(x, y, 255);
+        
+        uBit.sleep(100);
+    }
 }
+
+
+
+
 
