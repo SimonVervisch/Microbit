@@ -24,16 +24,21 @@ DEALINGS IN THE SOFTWARE.
 */
 
 #include "MicroBit.h"
+#include "Player.h"
 
 MicroBit uBit;
+struct Player player;
 
 //
 // Scales the given value that is in the -1024 to 1024 range
 // int a value between 0 and 4.
 //
+// TODO: Move this function to another position
 int pixel_from_g(int value)
 {
     int x = 0;
+
+    uBit.sleep(10);
 
     if (value > -750)
         x++;
@@ -48,14 +53,15 @@ int pixel_from_g(int value)
 }
 
 void space_invaders(){
-	player.x = 0;
-	player.y = 2;
+	player.pos.x = 0;
+	player.pos.y = 2;
 
 	while(1){
-		int y = pixel_from_g(uBit.accelerometer.getX());
+		int y = pixel_from_g(uBit.accelerometer.getY());
 
 		uBit.display.image.clear();
-		uBit.display.image.setPixelValue(player.x, y, 255);
+		uBit.display.image.setPixelValue(player.pos.x, y, 255);
+		uBit.sleep(10);
 		
 	}
 
@@ -72,16 +78,6 @@ int main()
     // scaled version of this ont the display. 
     //
     space_invaders();
-    while(1)
-    {
-        int x = pixel_from_g(uBit.accelerometer.getX());
-        int y = pixel_from_g(uBit.accelerometer.getY());
-
-        uBit.display.image.clear();
-        uBit.display.image.setPixelValue(x, y, 255);
-        
-        uBit.sleep(100);
-    }
 }
 
 
