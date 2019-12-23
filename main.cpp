@@ -27,16 +27,16 @@ DEALINGS IN THE SOFTWARE.
 #include "Player.h"
 
 MicroBit uBit;
-struct Player player;
+Player player;
 
 //
 // Scales the given value that is in the -1024 to 1024 range
 // int a value between 0 and 4.
 //
 // TODO: Move this function to another position
-int pixel_from_g(int value)
+int gravity to pixel(int value)
 {
-    int x = 0;
+    uint x = 0;
 
     uBit.sleep(10);
 
