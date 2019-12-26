@@ -1,5 +1,8 @@
+/*
+#include "game.h"
 // includes state of game
 //
+uint8_t enemy_spawn;
 
 void game_loop(){
 	//runs while game hasn't ended yet
@@ -22,4 +25,4 @@ void draw_positions(){
 
 
 
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 #include "io.h"
 
 
@@ -24,4 +25,4 @@ void decode_enemies(Game* game){ // change size key
 void decode_game(Game* game){
 	// encode player and enemies
 }
-
+*/
