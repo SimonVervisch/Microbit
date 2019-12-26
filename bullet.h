@@ -1,4 +1,4 @@
-/*
+
 #ifndef _INCL_BUl
 #define _INCL_BUL
 
@@ -11,4 +11,4 @@ typedef struct bullet{
 
 } Bullet;
 #endif _INCL_BUL
-*/
+

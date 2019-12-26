@@ -1,10 +1,10 @@
-/*
 #ifndef _GAME_H_
 #define _GAME_H_
+#include "linked-l.h"
 struct game{
 	Player player;
-	Enemy *enemies;
-	Bullet *bullets;
+	node_e *enemies;
+	node_b *bullets;
 
 } Game;
 
@@ -14,4 +14,3 @@ struct game{
 
 
 #endif
-*/
