@@ -8,5 +8,8 @@ typedef struct player{
 	Point pos; 
 	uint8_t lives; 
 } Player;
+
 uint8_t gravity_to_pixel(int8_t value);
+
+Player player;
 #endif
