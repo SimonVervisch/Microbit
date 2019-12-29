@@ -1,17 +1,17 @@
-#ifndef _INCL_BUl
+#ifndef _INCL_BUL
 #define _INCL_BUL
 
 #include "point.h"
-#include "stdbool.h"
+#include <stdbool.h>
 
 // Needed for bullet.cpp
-#include "game.h"
-#include "player.h"
 
 typedef struct bullet{
 	Point pos;
 	bool player_bullet;
 
 } Bullet;
-#endif _INCL_BUL
+void add_bullet(bool player_bullet);
+void remove_bullet();
+#endif 
 

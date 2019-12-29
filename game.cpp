@@ -1,5 +1,12 @@
-/*
 #include "game.h"
+
+Game game;
+MicroBit uBit;
+// initialization
+//game.bullet_list = NULL;
+//game.enemy_list = NULL;
+
+/*
 // includes state of game
 //
 uint8_t enemy_spawn;
