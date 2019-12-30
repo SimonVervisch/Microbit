@@ -7,18 +7,48 @@
 #include <stdlib.h>
 
 // used from https://www.learn-c.org/en/Linked_lists and slides Prof. E. Boix
+// https://aticleworld.com/generic-linked-list-in-c/
+// https://pseudomuto.com/2013/05/implementing-a-generic-linked-list-in-c/ || Deze laatste is zeer goed
 
-typedef struct node_b {
-    Bullet bullet;
-    struct node_b * next;
-} node_b;
 
-typedef struct node_e {
-    Enemy enemy;
-    struct node_e * next;
-} node_e;
+typedef struct node {
+    void* value;
+    struct node * next;
+} node_t;
 
-uint8_t pop_node_e(node_e **head);
-uint8_t remove_node_e_idx(node_e **head, uint8_t n);
+void pop_node_t(node_t *head);
+void remove_node_t_idx(node_t *head, uint8_t n);
+
+// a common function used to free malloc'd objects
+typedef void (*freeFunction)(void *);
+
+typedef bool (*listIterator)(void *);
+
+typedef struct _Node {
+  void *data;
+  struct _Node *next;
+} Node;
+
+typedef struct {
+  int elementSize;
+  Node *head;
+  freeFunction freeFn;
+} list;
+
+void list_new(list *list, int elementSize, freeFunction freeFn);
+void list_destroy(list *list);
+
+void list_prepend(list *list, void *element);
+void list_append(list *list, void *element);
+int list_size(list *list);
+
+void list_for_each(list *list, listIterator iterator);
+// nog een map?
+void list_head(list *list, void *element, bool removeFromList);
+void list_tail(list *list, void *element);
+void remove_first(list *list);
+//nog een remove functie
+
+#endif
 
 #endif

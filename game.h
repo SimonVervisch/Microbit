@@ -9,8 +9,8 @@ extern MicroBit uBit;
 
 
 typedef struct game{
-	node_e *enemy_list;
-	node_b *bullet_list;
+	node_t *enemy_list;
+	node_t *bullet_list;
 
 } Game;
 

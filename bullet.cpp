@@ -19,7 +19,7 @@ void add_bullet(bool player_bullet){ // at the moment only a player can fire
 	   }
 	   */
 	head->bullet = bullet;
-	head->next = NULL;
+	head->next = game.bullet_list;
 
 	game.bullet_list = head;
 
@@ -27,14 +27,16 @@ void add_bullet(bool player_bullet){ // at the moment only a player can fire
 
 }
 #define RIGHT_BORDER 4
-void move_bullet(Bullet *bullet){
-	static uint8_t i = 0;
+// Hier chasing pointers implementeren
+void move_bullet(node_b *bullet_list){
+	static uint8_t i = 0; // bug als je meerdere kogels wilt vuren
 
 	if(i < 20){
 		i +=1;
 
 
 	} else {
+		if(
 		if(bullet->pos.x != RIGHT_BORDER){
 			bullet->pos.x += 1;
 		} else {

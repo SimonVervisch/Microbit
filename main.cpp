@@ -10,9 +10,12 @@ void onButtonA(MicroBitEvent e){
 // Dus BUTTONS
 // CHECK
 // DISPLAY
-void display_bullet(Bullet bullet){
+void display_bullets(node_t *bullet_list){
+	for(node_t * list = bullet_list; list != NULL; list = list->next){
+		Point bulletPos = list->bullet.pos;
+		uBit.display.image.setPixelValue(bulletPos.x, bulletPos.y, 255);
 
-	uBit.display.image.setPixelValue(bullet.pos.x, bullet.pos.y, 255);
+	}
 }
 
 void space_invaders(){
@@ -22,12 +25,12 @@ void space_invaders(){
 
 	while(1){
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 7);
-		
+
 
 		uBit.display.image.clear();
 		player.pos.y = y;
 		uBit.display.image.setPixelValue(player.pos.x, y, 255);
-		node_b * bullet_list = game.bullet_list;
+		node_t * bullet_list = game.bullet_list;
 		if(bullet_list != NULL){
 			display_bullets(bullet_list);
 			move_bullet(&bullet_list->bullet);
@@ -42,14 +45,14 @@ void space_invaders(){
 
 int main()
 {
-    // initialise the micro:bit runtime.
-    uBit.init();
+	// initialise the micro:bit runtime.
+	uBit.init();
 
-    //
-    // Periodically read the accelerometer x and y values, and plot a 
-    // scaled version of this ont the display. 
-    //
-    space_invaders();
+	//
+	// Periodically read the accelerometer x and y values, and plot a 
+	// scaled version of this ont the display. 
+	//
+	space_invaders();
 }
 
 

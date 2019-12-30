@@ -4,7 +4,6 @@
 #include "point.h"
 #include <stdbool.h>
 
-// Needed for bullet.cpp
 
 typedef struct bullet{
 	Point pos;

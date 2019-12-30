@@ -1,16 +1,18 @@
 #include "linked-l.h"
 
-void pop_node_e(node_e *head){ // double pouint8_ter to modify the head pouint8_ter
+void remove_first(list *list){ // double pouint8_ter to modify the head pouint8_ter
+	
+	Node *head = list->head;
 
-	Enemy retval;
-	node_e * next_node = NULL;
+	void* retval;
+	Node * next_node = NULL;
 
 	if (head == NULL) {
 		return;
 	}
 
-	next_node = (head)->next;
-	retval = (head)->enemy;
+	next_node = head->next;
+	retval = head->data;
 	free(head);
 	head = next_node;
 
@@ -18,15 +20,14 @@ void pop_node_e(node_e *head){ // double pouint8_ter to modify the head pouint8_
 }
 
 
-void remove_node_e_idx(node_e * head, uint8_t n) {
+void remove_node_idx(node_t *head, uint8_t n) {
     uint8_t i = 0;
     Enemy retval; 
-    node_e * current = head;
-    node_e * temp_node = NULL;
+    node_t * current = head; //current, next, temp_node 
+    node_t * temp_node = NULL;
 
     if (n == 0) {
-	    
-        pop_node_e(head);
+        pop_node_t(head);
 	return;
     }
 
@@ -38,8 +39,8 @@ void remove_node_e_idx(node_e * head, uint8_t n) {
         current = current->next;
     }
 
-    temp_node = current->next;
-    retval = temp_node->enemy;
+    temp_node = current->next; //connect current with double next
+    retval = temp_node->enemy; 
     current->next = temp_node->next;
     free(temp_node);
 
