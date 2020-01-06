@@ -2,6 +2,9 @@
 #include "player.h"
 #include "game.h"
 
+uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
+
+
 void onButtonA(MicroBitEvent e){
 	add_bullet(true);
 }
@@ -13,7 +16,7 @@ void onButtonA(MicroBitEvent e){
 // CHECK
 // DISPLAY
 //
-bool check_bullet_movement(){
+void check_bullet_movement(){
 	if(timings_array[BULLETS_INDEX] == 0){
 		move_and_clean_bullets();
 		timings_array[BULLETS_INDEX] = BULLETS_COUNTER;
@@ -22,25 +25,30 @@ bool check_bullet_movement(){
 	}
 }
 
+void draw_bullets(){
+	for(uint8_t i = 0; i < array_bullets_length; i++){
+		Bullet bullet = game.bullet_array[i];
+
+		uBit.display.image.setPixelValue(bullet.pos.x,bullet.pos.y, 255);
+	}
+}
+
 
 void space_invaders(){
 	player.pos.x = 0;
 	player.pos.y = 2;
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonA);
+	initialize_game();
 
 	while(1){
 		//divide by 256 or shift 7 to right
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 7);
 
-		check_bullet_movement(game->bullet_array);
+		check_bullet_movement();
 		uBit.display.image.clear();
 		player.pos.y = y;
 		uBit.display.image.setPixelValue(player.pos.x, y, 255);
-		node_t * bullet_list = game.bullet_list;
-		if(bullet_list != NULL){
-			display_bullets(bullet_list);
-			move_bullet(&bullet_list->bullet);
-		}
+		draw_bullets();
 		uBit.sleep(BASE_RATE_TIMING);
 
 	}

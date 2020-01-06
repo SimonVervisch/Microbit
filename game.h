@@ -1,16 +1,18 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 #include "MicroBit.h" //used in game.cpp
+#include "enemy.h"
+#include "bullet.h"
 #include <stdbool.h>
 
 extern MicroBit uBit;
 
 // Allocated the correct amount of 
-uint8_t array_enemies_allocated 10;
-uint8_t array_bullets_allocated 10;
+extern uint8_t array_enemies_allocated ;
+extern uint8_t array_bullets_allocated ;
 
-uint8_t array_enemies_length 0;
-uint8_t array_bullets_length 0;
+extern uint8_t array_enemies_length;
+extern uint8_t array_bullets_length;
 
 
 typedef struct game{
@@ -24,8 +26,6 @@ typedef struct game{
  */
 extern Game game;
 
-game->enemy_list = malloc(array_enemies_allocated * sizeof(Enemy));
-game->bullet_array = malloc(array_bullets_allocated * sizeof(Bullet));
 
 
 // The speed at which the player can move and shoot (in milliseconds)
@@ -58,10 +58,7 @@ game->bullet_array = malloc(array_bullets_allocated * sizeof(Bullet));
 
 extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
 
-timings_array[BULLETS_INDEX] = BULLETS_COUNTER;
-timings_array[TYPE1_SHOOT_INDEX] = TYPE1_SHOOT_COUNTER;
-timings_array[TYPE1_MOVE_INDEX] = TYPE1_MOVE_COUNTER;
-
+void initialize_game();
 
 #define PLAYERSIDE 0
 #define ENEMYSIDE 4
