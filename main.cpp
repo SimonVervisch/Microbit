@@ -12,6 +12,16 @@ void onButtonA(MicroBitEvent e){
 // Dus BUTTONS
 // CHECK
 // DISPLAY
+//
+bool check_bullet_movement(){
+	if(timings_array[BULLETS_INDEX] == 0){
+		move_and_clean_bullets();
+		timings_array[BULLETS_INDEX] = BULLETS_COUNTER;
+	} else {
+		timings_array[BULLETS_INDEX] -= 1;
+	}
+}
+
 
 void space_invaders(){
 	player.pos.x = 0;
@@ -22,7 +32,7 @@ void space_invaders(){
 		//divide by 256 or shift 7 to right
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 7);
 
-		check_bullet_movement();
+		check_bullet_movement(game->bullet_array);
 		uBit.display.image.clear();
 		player.pos.y = y;
 		uBit.display.image.setPixelValue(player.pos.x, y, 255);

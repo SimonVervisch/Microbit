@@ -11,7 +11,6 @@ typedef struct bullet{
 
 } Bullet;
 
-// maak checker op -1, -1 
 void add_bullet(bool player_bullet);
 void remove_bullet();
 void move_bullet(Bullet *bullet);

@@ -14,7 +14,7 @@ uint8_t array_bullets_length 0;
 
 
 typedef struct game{
-	Enemy *enemy_list;
+	Enemy *enemy_array;
 	Bullet *bullet_array;
 
 } Game;
@@ -30,10 +30,10 @@ game->bullet_array = malloc(array_bullets_allocated * sizeof(Bullet));
 
 // The speed at which the player can move and shoot (in milliseconds)
 #define BASE_RATE_TIMING 10 
-#define TYPE1_BULLET_TIMER 50
-#define TYPE1_MOVE_TIMER 10
+#define BULLETS_COUNTER 20
+#define TYPE1_SHOOT_COUNTER 50
+#define TYPE1_MOVE_COUNTER 100
 
-// #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
@@ -45,8 +45,8 @@ game->bullet_array = malloc(array_bullets_allocated * sizeof(Bullet));
  * Indexes of the counter array. 
  */
 #define TIMINGS_ARRAY_LENGTH 9
-#define BULLET_INDEX 0 
-#define TYPE1_BULLET_INDEX 1 
+#define BULLETS_INDEX 0 
+#define TYPE1_SHOOT_INDEX 1 
 // #define BULLET_INDEX 0 
 // #define BULLET_INDEX 0 
 // #define BULLET_INDEX 0 
@@ -56,7 +56,11 @@ game->bullet_array = malloc(array_bullets_allocated * sizeof(Bullet));
 // #define BULLET_INDEX 0 
 
 
-extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH]
+extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
+
+timings_array[BULLETS_INDEX] = BULLETS_COUNTER;
+timings_array[TYPE1_SHOOT_INDEX] = TYPE1_SHOOT_COUNTER;
+timings_array[TYPE1_MOVE_INDEX] = TYPE1_MOVE_COUNTER;
 
 
 #define PLAYERSIDE 0
