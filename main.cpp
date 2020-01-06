@@ -7,17 +7,11 @@ void onButtonA(MicroBitEvent e){
 }
 
 
+
 // scheid input, logica en display
 // Dus BUTTONS
 // CHECK
 // DISPLAY
-void display_bullets(node_t *bullet_list){
-	for(node_t * list = bullet_list; list != NULL; list = list->next){
-		Point bulletPos = list->bullet.pos;
-		uBit.display.image.setPixelValue(bulletPos.x, bulletPos.y, 255);
-
-	}
-}
 
 void space_invaders(){
 	player.pos.x = 0;
@@ -25,9 +19,10 @@ void space_invaders(){
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonA);
 
 	while(1){
+		//divide by 256 or shift 7 to right
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 7);
 
-
+		check_bullet_movement();
 		uBit.display.image.clear();
 		player.pos.y = y;
 		uBit.display.image.setPixelValue(player.pos.x, y, 255);

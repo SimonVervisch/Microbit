@@ -1,17 +1,21 @@
 #ifndef _GAME_H_
 #define _GAME_H_
-#include "linked-l.h"
 #include "MicroBit.h" //used in game.cpp
 #include <stdbool.h>
 
 extern MicroBit uBit;
 
-// 10 seems like an appropriate number to initaliaze the array with
-#define INITIALIZATION_ARRAY 10
+// Allocated the correct amount of 
+uint8_t array_enemies_allocated 10;
+uint8_t array_bullets_allocated 10;
+
+uint8_t array_enemies_length 0;
+uint8_t array_bullets_length 0;
+
 
 typedef struct game{
-	Enemy enemy_list[INITIALIZATION_ARRAY];
-	Bullet *bullet_array[INITIALIZATION_ARRAY];
+	Enemy *enemy_list;
+	Bullet *bullet_array;
 
 } Game;
 
@@ -19,6 +23,10 @@ typedef struct game{
  * Note: There hasn't beent allocated any space
  */
 extern Game game;
+
+game->enemy_list = malloc(array_enemies_allocated * sizeof(Enemy));
+game->bullet_array = malloc(array_bullets_allocated * sizeof(Bullet));
+
 
 // The speed at which the player can move and shoot (in milliseconds)
 #define BASE_RATE_TIMING 10 
