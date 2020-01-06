@@ -6,10 +6,12 @@
 
 extern MicroBit uBit;
 
+// 10 seems like an appropriate number to initaliaze the array with
+#define INITIALIZATION_ARRAY 10
 
 typedef struct game{
-	Enemy *enemy_list;
-	Bullet *bullet_array;
+	Enemy enemy_list[INITIALIZATION_ARRAY];
+	Bullet *bullet_array[INITIALIZATION_ARRAY];
 
 } Game;
 
@@ -18,25 +20,36 @@ typedef struct game{
  */
 extern Game game;
 
-#define BASE_RATE_TIMING 10
-
+// The speed at which the player can move and shoot (in milliseconds)
+#define BASE_RATE_TIMING 10 
 #define TYPE1_BULLET_TIMER 50
 #define TYPE1_MOVE_TIMER 10
-/*
-#define BULLET_COUNTER 10
-#define BULLET_COUNTER 10
-#define BULLET_COUNTER 10
-#define BULLET_COUNTER 10
-#define BULLET_COUNTER 10
-#define BULLET_COUNTER 10
-*/
-#define TIMINGS_ARRAY_LENGTH 11
+
+// #define BULLET_COUNTER 10
+// #define BULLET_COUNTER 10
+// #define BULLET_COUNTER 10
+// #define BULLET_COUNTER 10
+// #define BULLET_COUNTER 10
+// #define BULLET_COUNTER 10
+
+
+/**
+ * Indexes of the counter array. 
+ */
+#define TIMINGS_ARRAY_LENGTH 9
+#define BULLET_INDEX 0 
+#define TYPE1_BULLET_INDEX 1 
+// #define BULLET_INDEX 0 
+// #define BULLET_INDEX 0 
+// #define BULLET_INDEX 0 
+#define TYPE1_MOVE_INDEX 5 
+// #define BULLET_INDEX 0 
+// #define BULLET_INDEX 0 
+// #define BULLET_INDEX 0 
+
 
 extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH]
 
-#define BULTIME 10
-#define ENEMYTIME 10
-#define PLAYERTIME 10
 
 #define PLAYERSIDE 0
 #define ENEMYSIDE 4
