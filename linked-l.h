@@ -11,10 +11,9 @@
 // https://pseudomuto.com/2013/05/implementing-a-generic-linked-list-in-c/ || Deze laatste is zeer goed
 
 
-typedef struct node {
-    void* value;
-    struct node * next;
-} node_t;
+typedef enum {
+	ENEMY, BULLET
+} TypeList;
 
 void pop_node_t(node_t *head);
 void remove_node_t_idx(node_t *head, uint8_t n);
@@ -46,9 +45,7 @@ void list_for_each(list *list, listIterator iterator);
 // nog een map?
 void list_head(list *list, void *element, bool removeFromList);
 void list_tail(list *list, void *element);
-void remove_first(list *list);
-//nog een remove functie
+void remove_first(list *list, TypeList typelist);
 
 #endif
 
-#endif

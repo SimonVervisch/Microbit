@@ -1,7 +1,7 @@
 #include "linked-l.h"
 
-void remove_first(list *list){ // double pouint8_ter to modify the head pouint8_ter
-	
+void remove_first(list *list, TypeList typelist){ // 
+
 	Node *head = list->head;
 
 	void* retval;
@@ -12,7 +12,8 @@ void remove_first(list *list){ // double pouint8_ter to modify the head pouint8_
 	}
 
 	next_node = head->next;
-	retval = head->data;
+	retval = (*head).data;
+	retval = head->data; // TODO: Zorg dat de cast van void pointer naar correcte grootte gebeurt
 	free(head);
 	head = next_node;
 
@@ -20,30 +21,33 @@ void remove_first(list *list){ // double pouint8_ter to modify the head pouint8_
 }
 
 
-void remove_node_idx(node_t *head, uint8_t n) {
-    uint8_t i = 0;
-    Enemy retval; 
-    node_t * current = head; //current, next, temp_node 
-    node_t * temp_node = NULL;
+void remove_node_idx(list *list, uint8_t n) {
+	uint8_t i = 0;
+	void* retval;
 
-    if (n == 0) {
-        pop_node_t(head);
-	return;
-    }
+	Node * head = list->head;
 
-    for (i = 0; i < n-1; i++) {
-        if (current->next == NULL) {
-		printf("Not at the end\n");
+	Node * current = head; //current, next, temp_node 
+	Node * temp_node = NULL;
+
+	if (n == 0) {
+		remove_first(head);
 		return;
-        }
-        current = current->next;
-    }
+	}
 
-    temp_node = current->next; //connect current with double next
-    retval = temp_node->enemy; 
-    current->next = temp_node->next;
-    free(temp_node);
+	for (i = 0; i < n-1; i++) {
+		if (current->next == NULL) {
+			printf("Not at the end\n");
+			return;
+		}
+		current = current->next;
+	}
 
-    return;
+	temp_node = current->next; //connect current with double next
+	retval = temp_node->enemy; 
+	current->next = temp_node->next;
+	free(temp_node);
+
+	return;
 
 }

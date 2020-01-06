@@ -6,6 +6,7 @@ void onButtonA(MicroBitEvent e){
 	add_bullet(true);
 }
 
+
 // scheid input, logica en display
 // Dus BUTTONS
 // CHECK
@@ -35,7 +36,7 @@ void space_invaders(){
 			display_bullets(bullet_list);
 			move_bullet(&bullet_list->bullet);
 		}
-		uBit.sleep(10);
+		uBit.sleep(BASE_RATE_TIMING);
 
 	}
 
