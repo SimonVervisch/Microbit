@@ -6,7 +6,7 @@ uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
 
 
 void onButtonA(MicroBitEvent e){
-	add_bullet(true);
+	add_bullet(1);
 }
 
 // scheid input, logica en display
