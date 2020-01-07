@@ -17,7 +17,7 @@ void initialize_game(){
 
 	game.enemy_array = (Enemy *)malloc(array_enemies_allocated * sizeof(Enemy));
 	game.bullet_array = (Bullet *)malloc(array_bullets_allocated * sizeof(Bullet));
-	timings_array[BULLETS_INDEX] = BULLETS_COUNTER;
+	timings_array[BULLETS] = BULLETS_COUNTER;
 //	timings_array[TYPE1_SHOOT_INDEX] = TYPE1_SHOOT_COUNTER;
 //	timings_array[TYPE1_MOVE_INDEX] = TYPE1_MOVE_COUNTER;
 

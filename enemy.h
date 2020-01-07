@@ -3,11 +3,9 @@
 #include "point.h"
 typedef struct enemy{
 	Point pos;
-	uint8_t speed;
-	uint8_t fire_rate;
-	uint8_t hitpoints;
-	uint8_t size;
-	uint8_t death_score;
+	// uint8_t speed; // is encoded in timers
+	uint8_t type: 3;
+	uint8_t hitpoints: 4;
 } Enemy;
 
 // maak enum met verschillende vijanden

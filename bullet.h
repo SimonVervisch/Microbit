@@ -1,13 +1,13 @@
 #ifndef _INCL_BUL
 #define _INCL_BUL
 
-#include "point.h"
-#include <stdbool.h>
 
 
 typedef struct bullet{
-	Point pos;
-	bool player_bullet;
+
+	uint8_t x:3;
+	uint8_t y:3;
+	uint8_t player_bullet:1;
 
 } Bullet;
 

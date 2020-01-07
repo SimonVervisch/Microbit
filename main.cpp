@@ -28,7 +28,6 @@ void check_bullet_movement(){
 void draw_bullets(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
 		Bullet bullet = game.bullet_array[i];
-
 		uBit.display.image.setPixelValue(bullet.pos.x,bullet.pos.y, 255);
 	}
 }

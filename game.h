@@ -43,19 +43,31 @@ extern Game game;
 /**
  * Indexes of the counter array. 
  */
-#define TIMINGS_ARRAY_LENGTH 9
-#define BULLETS_INDEX 0 
-#define TYPE1_SHOOT_INDEX 1 
-// #define BULLET_INDEX 0 
-// #define BULLET_INDEX 0 
-// #define BULLET_INDEX 0 
-#define TYPE1_MOVE_INDEX 5 
-// #define BULLET_INDEX 0 
-// #define BULLET_INDEX 0 
-// #define BULLET_INDEX 0 
+#define TIMINGS_ARRAY_LENGTH 11
+#define BULLETS 0 
+#define TYPE1_SHOOT 1 
+// #define BULLET 0 
+// #define BULLET 0 
+// #define BULLET 0 
+#define TYPE1_MOVE 6 
+// #define BULLET 0 
+// #define BULLET 0 
+// #define BULLET 0 
+#define TYPE_1_ENEMY 0
+#define TYPE_2_ENEMY 1
+#define TYPE_3_ENEMY 2
+#define TYPE_4_ENEMY 3
+#define TYPE_5_ENEMY 4
+
+#define SIZE_ENEMY 0
+#define SCORE_WHEN_DEATH 1
+#define HP 2
 
 
+
+//
 extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
+extern uint8_t enemy_stats_array[TYPE_5_ENEMY + 1][HP + 1]
 
 void initialize_game();
 
