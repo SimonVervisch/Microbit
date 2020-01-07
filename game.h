@@ -16,8 +16,8 @@ extern uint8_t array_bullets_length;
 
 
 typedef struct game{
-	Enemy *enemy_array;
-	Bullet *bullet_array;
+	Enemy *enemies_array;
+	Bullet *bullets_array;
 
 } Game;
 
@@ -29,15 +29,17 @@ extern Game game;
 
 // The speed at which the player can move and shoot (in milliseconds)
 #define BASE_RATE_TIMING 10 
-#define BULLETS_COUNTER 20
+#define BULLETS_COUNTER 30
 #define TYPE1_SHOOT_COUNTER 50
-//#define TYPE1_MOVE_COUNTER 100
+#define TYPE1_MOVE_COUNTER 63
 
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
+//
+#define GENERATE_ENEMY_COUNTER 30
 
 
 /**
@@ -53,6 +55,8 @@ extern Game game;
 // #define BULLET 0 
 // #define BULLET 0 
 // #define BULLET 0 
+//
+#define GENERATE_ENEMY 10
 #define TYPE_1_ENEMY 0
 #define TYPE_2_ENEMY 1
 #define TYPE_3_ENEMY 2
@@ -64,10 +68,8 @@ extern Game game;
 #define HP 2
 
 
-
-//
 extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
-extern uint8_t enemy_stats_array[TYPE_5_ENEMY + 1][HP + 1];
+extern uint8_t enemies_stats_array[TYPE_5_ENEMY + 1][HP + 1];
 
 void initialize_game();
 

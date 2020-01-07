@@ -8,7 +8,4 @@ typedef struct enemy{
 	uint8_t hitpoints: 4;
 } Enemy;
 
-// maak enum met verschillende vijanden
-//
-//enum = {FIRST_EN, SECOND_EN, THIRD_EN, FOURTH_EN}
 #endif

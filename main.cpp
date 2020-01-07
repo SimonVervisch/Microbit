@@ -14,7 +14,7 @@ void onButtonA(MicroBitEvent e){
 // CHECK
 // DISPLAY
 //
-void check_bullet_movement(){
+void check_bullets_movement(){
 	if(timings_array[BULLETS] == 0){
 		move_and_clean_bullets();
 		timings_array[BULLETS] = BULLETS_COUNTER;
@@ -25,9 +25,29 @@ void check_bullet_movement(){
 
 void draw_bullets(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
-		Bullet bullet = game.bullet_array[i];
+		Bullet bullet = game.bullets_array[i];
 		uBit.display.image.setPixelValue(bullet.x,bullet.y, 255);
 	}
+}
+
+void check_enemies_movement(){
+	if(timings_array[TYPE1_MOVE] == 0){
+		move_and_clean_enemies();
+		timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
+	} else {
+		timings_array[TYPE1_MOVE] -= 1;
+	}
+
+}
+
+void check_enemy_generation(){
+	if(timings_array[GENERATE_ENEMY] == 0){
+		generate_enemy();
+		timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
+	} else {
+		timings_array[TYPE1_MOVE] -= 1;
+	}
+
 }
 
 
@@ -37,15 +57,20 @@ void space_invaders(){
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonA);
 	initialize_game();
 
+	srand(time(NULL));
+
 	while(1){
 		//divide by 256 or shift 7 to right
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 7);
 
-		check_bullet_movement();
+		check_enemy_generation;
+		check_bullets_movement();
+		check_enemies_movement();
 		uBit.display.image.clear();
 		player.pos.y = y;
 		//draw Functions
 		uBit.display.image.setPixelValue(player.pos.x, y, 255);
+		draw_enemies();
 		draw_bullets();
 		uBit.sleep(BASE_RATE_TIMING);
 
