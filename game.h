@@ -67,7 +67,7 @@ extern Game game;
 
 //
 extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
-extern uint8_t enemy_stats_array[TYPE_5_ENEMY + 1][HP + 1]
+extern uint8_t enemy_stats_array[TYPE_5_ENEMY + 1][HP + 1];
 
 void initialize_game();
 

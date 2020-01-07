@@ -10,8 +10,8 @@ void add_bullet(bool player_bullet){ // at the moment only a player can fire
 	}
 	// is dit correct toevoegen?
 	Bullet bullet;
-	bullet.pos.x = player.pos.x;
-	bullet.pos.y = player.pos.y;
+	bullet.x = player.pos.x;
+	bullet.y = player.pos.y;
 	bullet.player_bullet = true;
 
 	game.bullet_array[array_bullets_length++] = bullet;
@@ -21,12 +21,12 @@ void add_bullet(bool player_bullet){ // at the moment only a player can fire
 #define RIGHT_BORDER 4
 void move_and_clean_bullets(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
-		game.bullet_array[i].pos.x += 1;
+		game.bullet_array[i].x += 1;
 	}
 
 	for(uint8_t i = 0; i< array_bullets_length; i++){
 		//if current bullet can be removed, make array counter
-		while(game.bullet_array[i].pos.x > RIGHT_BORDER){
+		while(game.bullet_array[i].x > RIGHT_BORDER){
 
 			if(i + 1 == array_bullets_length){
 

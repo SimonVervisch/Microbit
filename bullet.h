@@ -1,7 +1,7 @@
 #ifndef _INCL_BUL
 #define _INCL_BUL
 
-
+#include <stdint.h>
 
 typedef struct bullet{
 

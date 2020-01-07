@@ -9,26 +9,24 @@ void onButtonA(MicroBitEvent e){
 	add_bullet(true);
 }
 
-
-
 // scheid input, logica en display
 // Dus BUTTONS
 // CHECK
 // DISPLAY
 //
 void check_bullet_movement(){
-	if(timings_array[BULLETS_INDEX] == 0){
+	if(timings_array[BULLETS] == 0){
 		move_and_clean_bullets();
-		timings_array[BULLETS_INDEX] = BULLETS_COUNTER;
+		timings_array[BULLETS] = BULLETS_COUNTER;
 	} else {
-		timings_array[BULLETS_INDEX] -= 1;
+		timings_array[BULLETS] -= 1;
 	}
 }
 
 void draw_bullets(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
 		Bullet bullet = game.bullet_array[i];
-		uBit.display.image.setPixelValue(bullet.pos.x,bullet.pos.y, 255);
+		uBit.display.image.setPixelValue(bullet.x,bullet.y, 255);
 	}
 }
 
