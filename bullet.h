@@ -12,6 +12,7 @@ typedef struct bullet{
 } Bullet;
 
 void add_bullet(bool player_bullet);
-void move_and_clean_bullets();
+void move_bullets();
+void clean_bullets_array();
 #endif 
 

@@ -16,7 +16,7 @@ void onButtonA(MicroBitEvent e){
 //
 int check_bullets_movement(){
 	if(timings_array[BULLETS] == 0){
-		move_and_clean_bullets();
+		move_bullets();
 		timings_array[BULLETS] = BULLETS_COUNTER;
 		return 1;
 	} else {
@@ -34,7 +34,7 @@ void draw_bullets(){
 
 int check_enemies_movement(){
 	if(timings_array[TYPE1_MOVE] == 0){
-		move_and_clean_enemies();
+		move_enemies();
 		timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
 		return 1;
 	} else {
@@ -69,6 +69,7 @@ void space_invaders(){
 	initialize_game();
 
 	srand(time(NULL));
+	generate_enemy();
 
 	while(1){
 		//divide by 256 or shift 7 to right

@@ -15,7 +15,7 @@ void generate_enemy(){
 
 }
 
-void move_and_clean_enemies(){
+void move_enemies(){
 	for(uint8_t i = 0; i < array_enemies_length; i++){
 		if(game.enemies_array[i].pos.x == 0){
 			game.enemies_array[i].pos.x = LEFT_BORDER;
@@ -23,12 +23,28 @@ void move_and_clean_enemies(){
 			game.enemies_array[i].pos.x -= 1;
 		}
 	}
+	for(uint8_t i = 0; i < array_bullets_length; i++){
+		Bullet bullet = game.bullets_array[i];
+		for(uint8_t j = 0; j < array_enemies_length; j++){
+			Enemy enemy = game.enemies_array[i];
+			if(enemy.pos.x == bullet.x && enemy.pos.y == bullet.y){
+				game.enemies_array[i].pos.x = LEFT_BORDER;
+				game.bullets_array[i].x = RIGHT_BORDER + 1; //move out of field
+			}
+		}
+		clean_bullets_array();
+	}
+
+	clean_enemies_array();
+
+
+}
+void clean_enemies_array(){
 	for(uint8_t i = 0; i< array_enemies_length; i++){
 
 		while(game.enemies_array[i].pos.x == LEFT_BORDER){
 
 			if(i + 1 == array_enemies_length){
-
 
 				array_enemies_length -= 1;
 				break;
@@ -38,8 +54,6 @@ void move_and_clean_enemies(){
 			}
 		}
 	}
-
-
 }
 /*
 

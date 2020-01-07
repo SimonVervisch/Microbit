@@ -18,11 +18,28 @@ void add_bullet(bool player_bullet){ // at the moment only a player can fire
 	game.bullets_array[array_bullets_length++] = bullet;
 
 }
-void move_and_clean_bullets(){
+void move_bullets(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
 		game.bullets_array[i].x += 1;
 	}
 
+	for(uint8_t i = 0; i < array_bullets_length; i++){
+		Bullet bullet = game.bullets_array[i];
+		for(uint8_t j = 0; j < array_enemies_length; j++){
+			Enemy enemy = game.enemies_array[i];
+			if(enemy.pos.x == bullet.x && enemy.pos.y == bullet.y){
+				game.enemies_array[i].pos.x = LEFT_BORDER;
+				game.bullets_array[i].x = RIGHT_BORDER + 1; //move out of field
+			}
+		}
+		clean_enemies_array();
+	}
+
+	clean_bullets_array();
+
+
+}
+void clean_bullets_array(){
 	for(uint8_t i = 0; i< array_bullets_length; i++){
 		//if current bullet can be removed, make array counter
 		while(game.bullets_array[i].x > RIGHT_BORDER){
@@ -41,5 +58,6 @@ void move_and_clean_bullets(){
 		}
 
 	}
+
 }
 

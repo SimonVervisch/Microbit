@@ -10,6 +10,7 @@ typedef struct enemy{
 
 
 void generate_enemy();
-void move_and_clean_enemies();
+void move_enemies();
+void clean_enemies_array();
 
 #endif
