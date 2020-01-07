@@ -43,11 +43,18 @@ void check_enemies_movement(){
 void check_enemy_generation(){
 	if(timings_array[GENERATE_ENEMY] == 0){
 		generate_enemy();
-		timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
+		timings_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
 	} else {
-		timings_array[TYPE1_MOVE] -= 1;
+		timings_array[GENERATE_ENEMY] -= 1;
 	}
 
+}
+
+void draw_enemies(){
+	for(uint8_t i = 0; i < array_enemies_length; i++){
+		Enemy enemy = game.enemies_array[i];
+		uBit.display.image.setPixelValue(enemy.pos.x,enemy.pos.y, 255);
+	}
 }
 
 
@@ -63,7 +70,7 @@ void space_invaders(){
 		//divide by 256 or shift 7 to right
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 7);
 
-		check_enemy_generation;
+		check_enemy_generation();
 		check_bullets_movement();
 		check_enemies_movement();
 		uBit.display.image.clear();

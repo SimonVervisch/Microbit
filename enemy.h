@@ -8,4 +8,8 @@ typedef struct enemy{
 	uint8_t hitpoints: 4;
 } Enemy;
 
+
+void generate_enemy();
+void move_and_clean_enemies();
+
 #endif

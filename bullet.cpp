@@ -18,7 +18,6 @@ void add_bullet(bool player_bullet){ // at the moment only a player can fire
 	game.bullets_array[array_bullets_length++] = bullet;
 
 }
-#define RIGHT_BORDER 4
 void move_and_clean_bullets(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
 		game.bullets_array[i].x += 1;

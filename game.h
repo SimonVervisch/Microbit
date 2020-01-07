@@ -39,7 +39,7 @@ extern Game game;
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
 //
-#define GENERATE_ENEMY_COUNTER 30
+#define GENERATE_ENEMY_COUNTER 63
 
 
 /**
@@ -73,8 +73,8 @@ extern uint8_t enemies_stats_array[TYPE_5_ENEMY + 1][HP + 1];
 
 void initialize_game();
 
-#define PLAYERSIDE 0
-#define ENEMYSIDE 4
+#define LEFT_BORDER 5
+#define RIGHT_BORDER 4
 
 
 #endif
