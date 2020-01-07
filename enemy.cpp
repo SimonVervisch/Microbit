@@ -12,7 +12,6 @@ void generate_enemy(){
 	enemy.pos.y = rand() % 5; 
 	enemy.type = TYPE_1_ENEMY;
 	game.enemies_array[array_enemies_length++] = enemy;
-	array_enemies_length += 1;
 
 }
 

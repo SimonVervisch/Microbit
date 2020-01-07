@@ -30,12 +30,14 @@ void draw_bullets(){
 	}
 }
 
-void check_enemies_movement(){
+int check_enemies_movement(){
 	if(timings_array[TYPE1_MOVE] == 0){
 		move_and_clean_enemies();
 		timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
+		return 1;
 	} else {
 		timings_array[TYPE1_MOVE] -= 1;
+		return 0;
 	}
 
 }
@@ -70,9 +72,10 @@ void space_invaders(){
 		//divide by 256 or shift 7 to right
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 7);
 
-		check_enemy_generation();
+		if(check_enemies_movement()){
+			check_enemy_generation();
+		}
 		check_bullets_movement();
-		check_enemies_movement();
 		uBit.display.image.clear();
 		player.pos.y = y;
 		//draw Functions
