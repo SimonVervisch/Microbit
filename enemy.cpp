@@ -2,6 +2,7 @@
 #include "game.h"
 
 void generate_enemy(){
+	static uint8_t type_1 = 1;
 	if(array_enemies_length == array_enemies_allocated){
 		array_enemies_allocated += 2;
 		game.enemies_array = (Enemy *)realloc(game.enemies_array, sizeof(Enemy) * array_enemies_allocated);
@@ -10,7 +11,11 @@ void generate_enemy(){
 	Enemy enemy;
 	enemy.pos.x = RIGHT_BORDER; 
 	enemy.pos.y = rand() % 5; 
-	enemy.type = TYPE_1_ENEMY;
+	if(type_1){
+		enemy.type = TYPE1_ENEMY;
+	} else {
+		enemy.type = TYPE2_ENEMY;
+	}
 	game.enemies_array[array_enemies_length++] = enemy;
 
 }

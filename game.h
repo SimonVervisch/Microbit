@@ -56,19 +56,22 @@ extern Game game;
 // #define BULLET 0 
 //
 #define GENERATE_ENEMY 10
-#define TYPE_1_ENEMY 0
-#define TYPE_2_ENEMY 1
-#define TYPE_3_ENEMY 2
-#define TYPE_4_ENEMY 3
-#define TYPE_5_ENEMY 4
+#define TYPE1_ENEMY 0
+#define TYPE2_ENEMY 1
+#define TYPE3_ENEMY 2
+#define TYPE4_ENEMY 3
+#define TYPE5_ENEMY 4
 
 #define SIZE_ENEMY 0
 #define SCORE_WHEN_DEATH 1
-#define HP 2
+#define HP_TOTAL 2
+
+#define SIZE_ENEMY_1 1
+#define SIZE_ENEMY_2 2
 
 
 extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
-extern uint8_t enemies_stats_array[TYPE_5_ENEMY + 1][HP + 1];
+extern uint8_t enemies_stats_array[TYPE5_ENEMY + 1][HP_TOTAL + 1];
 
 void initialize_game();
 

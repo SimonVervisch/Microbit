@@ -23,6 +23,7 @@ void move_bullets(){
 		game.bullets_array[i].x += 1;
 	}
 
+	//collision detection
 	for(uint8_t i = 0; i < array_bullets_length; i++){
 		Bullet bullet = game.bullets_array[i];
 		for(uint8_t j = 0; j < array_enemies_length; j++){

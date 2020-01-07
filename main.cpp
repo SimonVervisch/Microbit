@@ -73,7 +73,7 @@ void space_invaders(){
 
 	while(1){
 		//divide by 256 or shift 7 to right
-		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 7);
+		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 8);
 
 		if(check_bullets_movement()){
 			if(check_enemies_movement()){
