@@ -16,7 +16,6 @@ void add_bullet(bool player_bullet){ // at the moment only a player can fire
 	bullet.player_bullet = 1;
 
 	game.bullet_array[array_bullets_length++] = bullet;
-	array_bullets_length += 1;
 
 }
 #define RIGHT_BORDER 4
