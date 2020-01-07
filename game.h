@@ -30,7 +30,7 @@ extern Game game;
 #define BASE_RATE_TIMING 10 
 #define BULLETS_COUNTER 30
 #define TYPE1_SHOOT_COUNTER 50
-#define TYPE1_MOVE_COUNTER 63 
+#define TYPE1_MOVE_COUNTER 5
 
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
@@ -38,7 +38,7 @@ extern Game game;
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
 //
-#define GENERATE_ENEMY_COUNTER 4
+#define GENERATE_ENEMY_COUNTER 2
 
 
 /**

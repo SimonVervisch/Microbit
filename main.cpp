@@ -14,12 +14,14 @@ void onButtonA(MicroBitEvent e){
 // CHECK
 // DISPLAY
 //
-void check_bullets_movement(){
+int check_bullets_movement(){
 	if(timings_array[BULLETS] == 0){
 		move_and_clean_bullets();
 		timings_array[BULLETS] = BULLETS_COUNTER;
+		return 1;
 	} else {
 		timings_array[BULLETS] -= 1;
+		return 0;
 	}
 }
 
@@ -72,10 +74,12 @@ void space_invaders(){
 		//divide by 256 or shift 7 to right
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 7);
 
-		if(check_enemies_movement()){
-			check_enemy_generation();
+		if(check_bullets_movement()){
+			if(check_enemies_movement()){
+				check_enemy_generation();
+			}
+
 		}
-		check_bullets_movement();
 		uBit.display.image.clear();
 		player.pos.y = y;
 		//draw Functions
