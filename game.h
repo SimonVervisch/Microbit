@@ -27,12 +27,11 @@ typedef struct game{
 extern Game game;
 
 
-
 // The speed at which the player can move and shoot (in milliseconds)
 #define BASE_RATE_TIMING 10 
 #define BULLETS_COUNTER 20
 #define TYPE1_SHOOT_COUNTER 50
-#define TYPE1_MOVE_COUNTER 100
+//#define TYPE1_MOVE_COUNTER 100
 
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10

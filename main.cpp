@@ -47,6 +47,7 @@ void space_invaders(){
 		check_bullet_movement();
 		uBit.display.image.clear();
 		player.pos.y = y;
+		//draw Functions
 		uBit.display.image.setPixelValue(player.pos.x, y, 255);
 		draw_bullets();
 		uBit.sleep(BASE_RATE_TIMING);
