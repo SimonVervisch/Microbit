@@ -29,9 +29,10 @@ void initialize_game(){
 	enemies_stats_array[TYPE2_ENEMY][MOVE_COUNTER] = TYPE2_MOVE_COUNTER; 
 
 	timings_array[BULLETS] = BULLETS_COUNTER;
-	timings_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
+	timings_array[ENEMY_BASE] = ENEMY_BASE_COUNTER;
 	timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
 	timings_array[TYPE2_MOVE] = TYPE2_MOVE_COUNTER;
+	timings_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
 //	timings_array[TYPE1_SHOOT_INDEX] = TYPE1_SHOOT_COUNTER;
 
 

@@ -18,7 +18,7 @@ void onButtonA(MicroBitEvent e){
 // DISPLAY
 //
 int check_bullets_movement(){
-	if(timings_array[BULLETS] == 0){
+	if(timings_array[BULLETS] == 1){
 		move_bullets();
 		timings_array[BULLETS] = BULLETS_COUNTER;
 		return 1;
@@ -34,22 +34,30 @@ void draw_bullets(){
 		uBit.display.image.setPixelValue(bullet.x,bullet.y, 255);
 	}
 }
-
-int check_enemies_movement(){
-	if(timings_array[TYPE1_MOVE] == 0){
-		// here is the collision detection as well
-		move_enemies();
-		timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
+int check_enemies_base_rate(){
+	if(timings_array[ENEMY_BASE] == 1){
+		timings_array[ENEMY_BASE] = TYPE1_MOVE_COUNTER;
 		return 1;
 	} else {
-		timings_array[TYPE1_MOVE] -= 1;
+		timings_array[ENEMY_BASE] -= 1;
 		return 0;
 	}
 
 }
 
+void check_enemies_movement(){
+	if(timings_array[TYPE1_MOVE] == 1){
+		// here is the collision detection as well
+		move_enemies();
+		timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
+	} else {
+		timings_array[TYPE1_MOVE] -= 1;
+	}
+
+}
+
 void check_enemy_generation(){
-	if(timings_array[GENERATE_ENEMY] == 0){
+	if(timings_array[GENERATE_ENEMY] == 1){
 		generate_enemy();
 		timings_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
 	} else {
@@ -79,8 +87,10 @@ void space_invaders(){
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 8);
 
 		if(check_bullets_movement()){
-			if(check_enemies_movement()){
+			if(check_enemies_base_rate()){
+				check_enemies_movement();
 				check_enemy_generation();
+
 			}
 		}
 		uBit.display.image.clear();
