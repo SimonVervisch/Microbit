@@ -38,7 +38,6 @@ void initialize_game(){
 }
 
 void reset_game(){
-	uBit.sleep(1000);
 	uBit.display.print("You Ded!");
 	free(game.enemies_array);
 	free(game.bullets_array);

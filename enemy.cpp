@@ -21,6 +21,14 @@ void generate_enemy(){
 	game.enemies_array[array_enemies_length++] = enemy;
 
 }
+void enemies_border_check(){
+	for(uint8_t i = 0; i< array_enemies_length; i++){
+		if(game.enemies_array[i].pos.x == LEFT_BORDER){
+			reset_game();
+		}
+	}
+
+}
 
 void move_enemies(){
 	for(uint8_t i = 0; i < array_enemies_length; i++){
@@ -42,8 +50,11 @@ void move_enemies(){
 		clean_bullets_array();
 	}
 
-	clean_enemies_array();
-
+	if(DEBUG_MODE){
+		clean_enemies_array();
+	} else{
+		enemies_border_check();
+	}
 
 }
 void clean_enemies_array(){
@@ -62,6 +73,7 @@ void clean_enemies_array(){
 		}
 	}
 }
+
 /*
 
    void can_shoot_again(Enemy* enemy){

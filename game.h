@@ -31,11 +31,11 @@ extern Game game;
 /*
  * Calculation = bullet_speed * enemy_speed * enemy_generation !Enemy Generation will change!
  *
- * TIMING GUIDELINES: 200-300 ms bullet speed
+ * TIMING GUIDELINES: 100-200 ms bullet speed
  * Enemy movement 1500 - 2000 ms
  * Enemy Generation 4000 - 6000 ms
  */
-#define BULLETS_COUNTER 20
+#define BULLETS_COUNTER 5
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
@@ -75,10 +75,10 @@ extern Game game;
 
 #define SIZE_ENEMY_1 1
 #define SIZE_ENEMY_2 2
-#define TYPE1_MOVE_COUNTER 7
-#define TYPE1_SHOOT_COUNTER 50
+#define TYPE1_MOVE_COUNTER 30
+//#define TYPE1_SHOOT_COUNTER 50
 #define TYPE2_MOVE_COUNTER 5
-#define TYPE2_SHOOT_COUNTER 50
+// #define TYPE2_SHOOT_COUNTER 50
 
 extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
 extern uint8_t enemies_stats_array[TYPE5_ENEMY + 1][SHOOT_COUNTER + 1];
@@ -86,8 +86,9 @@ extern uint8_t enemies_stats_array[TYPE5_ENEMY + 1][SHOOT_COUNTER + 1];
 void initialize_game();
 void reset_game();
 
-#define LEFT_BORDER 5
+#define LEFT_BORDER 0
 #define RIGHT_BORDER 4
+#define DEBUG_MODE 0
 
 
 #endif
