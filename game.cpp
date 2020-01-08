@@ -52,4 +52,15 @@ void reset_game(){
 	initialize_game();
 }
 
+void start_after_loading(){
+	array_bullets_allocated = 10;
+	array_bullets_length = 0;
+
+	game.bullets_array = (Bullet *)malloc(array_bullets_allocated * sizeof(Bullet));
+	counters_array[BULLETS] = BULLETS_COUNTER;
+	counters_array[ENEMY_BASE] = ENEMY_BASE_COUNTER;
+	counters_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
+}
+
+
 
