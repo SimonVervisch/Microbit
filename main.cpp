@@ -2,11 +2,11 @@
 #include "player.h"
 #include "game.h"
 
-uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
+uint8_t counters_array[TIMINGS_ARRAY_LENGTH];
 
 
 void onButtonB(MicroBitEvent e){
-	add_bullet(1);
+	add_bullet(1, player.pos.x, player.pos.y);
 }
 void onButtonA(MicroBitEvent e){
 	reset_game();
@@ -18,12 +18,12 @@ void onButtonA(MicroBitEvent e){
 // DISPLAY
 //
 int check_bullets_movement(){
-	if(timings_array[BULLETS] == 1){
+	if(counters_array[BULLETS] == 1){
 		move_bullets();
-		timings_array[BULLETS] = BULLETS_COUNTER;
+		counters_array[BULLETS] = BULLETS_COUNTER;
 		return 1;
 	} else {
-		timings_array[BULLETS] -= 1;
+		counters_array[BULLETS] -= 1;
 		return 0;
 	}
 }
@@ -35,33 +35,43 @@ void draw_bullets(){
 	}
 }
 int check_enemies_base_rate(){
-	if(timings_array[ENEMY_BASE] == 1){
-		timings_array[ENEMY_BASE] = TYPE1_MOVE_COUNTER;
+	if(counters_array[ENEMY_BASE] == 1){
+		counters_array[ENEMY_BASE] = TYPE1_MOVE_COUNTER;
 		return 1;
 	} else {
-		timings_array[ENEMY_BASE] -= 1;
+		counters_array[ENEMY_BASE] -= 1;
 		return 0;
 	}
 
 }
 
 void check_enemies_movement(){
-	if(timings_array[TYPE1_MOVE] == 1){
+	if(enemies_stats_array[TYPE1_ENEMY][CURRENT_MOVE_COUNTER] == 1){
 		// here is the collision detection as well
 		move_enemies();
-		timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
+		enemies_stats_array[TYPE1_ENEMY][CURRENT_MOVE_COUNTER] = TYPE1_MOVE_COUNTER;
 	} else {
-		timings_array[TYPE1_MOVE] -= 1;
+		enemies_stats_array[TYPE1_ENEMY][CURRENT_MOVE_COUNTER] -= 1;
 	}
 
 }
 
 void check_enemy_generation(){
-	if(timings_array[GENERATE_ENEMY] == 1){
+	if(counters_array[GENERATE_ENEMY] == 1){
 		generate_enemy();
-		timings_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
+		counters_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
 	} else {
-		timings_array[GENERATE_ENEMY] -= 1;
+		counters_array[GENERATE_ENEMY] -= 1;
+	}
+
+}
+
+void check_enemy_shoot(){
+	if(enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] == 1){
+		enemies_add_bullets();
+		enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] = TYPE1_SHOOT_COUNTER;
+	} else {
+		enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] -= 1;
 	}
 
 }
@@ -88,8 +98,12 @@ void space_invaders(){
 
 		if(check_bullets_movement()){
 			if(check_enemies_base_rate()){
-				check_enemies_movement();
+				// check_enemies_movement();
 				check_enemy_generation();
+				if(!DEBUG_MODE){
+					check_enemy_shoot();
+
+				}
 
 			}
 		}

@@ -12,5 +12,6 @@ typedef struct enemy{
 void generate_enemy();
 void move_enemies();
 void clean_enemies_array();
+void enemies_add_bullets();
 
 #endif

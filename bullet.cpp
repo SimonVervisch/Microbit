@@ -3,17 +3,21 @@
 #include "player.h"
 
 
-void add_bullet(bool player_bullet){ // at the moment only a player can fire
+void add_bullet(uint8_t player_bullet,uint8_t shooter_x, uint8_t shooter_y){ // at the moment only a player can fire
 	if(array_bullets_length == array_bullets_allocated){
 		array_bullets_allocated += 2;
 		game.bullets_array = (Bullet *)realloc(game.bullets_array, sizeof(Bullet) * array_bullets_allocated);
 	}
 	// is dit correct toevoegen?
 	Bullet bullet;
-	bullet.x = player.pos.x;
-	bullet.y = player.pos.y;
+	if((bullet.player_bullet = player_bullet)){
+		bullet.x = player.pos.x;
+		bullet.y = player.pos.y;
+
+	} else{
+		
+	}
 	// player_bullet is boolean
-	bullet.player_bullet = 1;
 
 	game.bullets_array[array_bullets_length++] = bullet;
 
@@ -27,9 +31,9 @@ void move_bullets(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
 		Bullet bullet = game.bullets_array[i];
 		for(uint8_t j = 0; j < array_enemies_length; j++){
-			Enemy enemy = game.enemies_array[i];
+			Enemy enemy = game.enemies_array[j];
 			if(enemy.pos.x == bullet.x && enemy.pos.y == bullet.y){
-				game.enemies_array[i].pos.x = LEFT_BORDER;
+				game.enemies_array[j].pos.x = LEFT_BORDER;
 				game.bullets_array[i].x = RIGHT_BORDER + 1; //move out of field
 			}
 		}

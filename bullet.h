@@ -11,7 +11,7 @@ typedef struct bullet{
 
 } Bullet;
 
-void add_bullet(bool player_bullet);
+void add_bullet(uint8_t player_bullet, uint8_t shooter_x, uint8_t shooter_y);
 void move_bullets();
 void clean_bullets_array();
 #endif 

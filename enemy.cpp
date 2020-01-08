@@ -1,6 +1,12 @@
 #include "enemy.h"
 #include "game.h"
 
+void enemies_add_bullets(){
+	for(uint8_t i = 0; i < array_enemies_length; i++){
+		add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y);
+	}
+}
+ 
 void generate_enemy(){
 	static uint8_t type_1 = 1;
 	if(array_enemies_length == array_enemies_allocated){
@@ -41,20 +47,19 @@ void move_enemies(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
 		Bullet bullet = game.bullets_array[i];
 		for(uint8_t j = 0; j < array_enemies_length; j++){
-			Enemy enemy = game.enemies_array[i];
+			Enemy enemy = game.enemies_array[j];
 			if(enemy.pos.x == bullet.x && enemy.pos.y == bullet.y){
-				game.enemies_array[i].pos.x = LEFT_BORDER;
+				game.enemies_array[j].pos.x = LEFT_BORDER;
 				game.bullets_array[i].x = RIGHT_BORDER + 1; //move out of field
 			}
 		}
 		clean_bullets_array();
 	}
 
-	if(DEBUG_MODE){
-		clean_enemies_array();
-	} else{
+	if(!DEBUG_MODE){
 		enemies_border_check();
 	}
+	clean_enemies_array();
 
 }
 void clean_enemies_array(){
