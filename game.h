@@ -18,7 +18,7 @@ extern uint8_t array_bullets_length;
 typedef struct game{
 	Enemy *enemies_array;
 	Bullet *bullets_array;
-
+	uint8_t score;
 } Game;
 /*
  * Note: There hasn't beent allocated any space
@@ -84,7 +84,7 @@ extern uint8_t enemies_stats_array[TYPE5_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];
 void initialize_game();
 void reset_game();
 
-#define LEFT_BORDER 5
+#define LEFT_BORDER 6
 #define RIGHT_BORDER 4
 #define DEBUG_MODE 0
 

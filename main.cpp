@@ -36,7 +36,7 @@ void draw_bullets(){
 }
 int check_enemies_base_rate(){
 	if(counters_array[ENEMY_BASE] == 1){
-		counters_array[ENEMY_BASE] = TYPE1_MOVE_COUNTER;
+		counters_array[ENEMY_BASE] = ENEMY_BASE_COUNTER;
 		return 1;
 	} else {
 		counters_array[ENEMY_BASE] -= 1;
@@ -68,7 +68,10 @@ void check_enemy_generation(){
 
 void check_enemy_shoot(){
 	if(enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] == 1){
-		enemies_add_bullets();
+		for(uint8_t i = 0; i < array_enemies_length; i++){
+			add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y);
+		}
+
 		enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] = TYPE1_SHOOT_COUNTER;
 	} else {
 		enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] -= 1;
@@ -100,10 +103,8 @@ void space_invaders(){
 			if(check_enemies_base_rate()){
 				// check_enemies_movement();
 				check_enemy_generation();
-				if(!DEBUG_MODE){
-					check_enemy_shoot();
+				check_enemy_shoot();
 
-				}
 
 			}
 		}

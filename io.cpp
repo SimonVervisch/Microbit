@@ -1,10 +1,12 @@
-/*
 #include "io.h"
+#include "player.h"
 
 
 void encode_player(Player* player){ // change size 
 
+
 } 
+/*
 
 void encode_enemies(Game* game){ // change size key
 
