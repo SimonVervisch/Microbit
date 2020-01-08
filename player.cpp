@@ -1,6 +1,5 @@
 #include "player.h"
 
-Player player;
 uint8_t gravity_to_pixel(int8_t value){
     uint8_t x = 0;
     uint8_t first = 1;

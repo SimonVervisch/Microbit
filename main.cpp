@@ -5,8 +5,11 @@
 uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
 
 
-void onButtonA(MicroBitEvent e){
+void onButtonB(MicroBitEvent e){
 	add_bullet(1);
+}
+void onButtonA(MicroBitEvent e){
+	reset_game();
 }
 
 // scheid input, logica en display
@@ -34,6 +37,7 @@ void draw_bullets(){
 
 int check_enemies_movement(){
 	if(timings_array[TYPE1_MOVE] == 0){
+		// here is the collision detection as well
 		move_enemies();
 		timings_array[TYPE1_MOVE] = TYPE1_MOVE_COUNTER;
 		return 1;
@@ -63,8 +67,7 @@ void draw_enemies(){
 
 
 void space_invaders(){
-	player.pos.x = 0;
-	player.pos.y = 2;
+	uBit.messageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_BUTTON_EVT_CLICK, onButtonB);
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonA);
 	initialize_game();
 
@@ -79,7 +82,6 @@ void space_invaders(){
 			if(check_enemies_movement()){
 				check_enemy_generation();
 			}
-
 		}
 		uBit.display.image.clear();
 		player.pos.y = y;

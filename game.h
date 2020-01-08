@@ -28,11 +28,14 @@ extern Game game;
 
 // The speed at which the player can move and shoot (in milliseconds)
 #define BASE_RATE_TIMING 10 
-#define BULLETS_COUNTER 30
-#define TYPE1_SHOOT_COUNTER 50
-#define TYPE1_MOVE_COUNTER 5
-
-// #define BULLET_COUNTER 10
+/*
+ * Calculation = bullet_speed * enemy_speed * enemy_generation !Enemy Generation will change!
+ *
+ * TIMING GUIDELINES: 200-300 ms bullet speed
+ * Enemy movement 1500 - 2000 ms
+ * Enemy Generation 4000 - 6000 ms
+ */
+#define BULLETS_COUNTER 20
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
 // #define BULLET_COUNTER 10
@@ -47,10 +50,12 @@ extern Game game;
 #define TIMINGS_ARRAY_LENGTH 11
 #define BULLETS 0 
 #define TYPE1_SHOOT 1 
+#define TYPE2_SHOOT 2 
 // #define BULLET 0 
 // #define BULLET 0 
 // #define BULLET 0 
 #define TYPE1_MOVE 6 
+#define TYPE2_MOVE 7 
 // #define BULLET 0 
 // #define BULLET 0 
 // #define BULLET 0 
@@ -65,15 +70,21 @@ extern Game game;
 #define SIZE_ENEMY 0
 #define SCORE_WHEN_DEATH 1
 #define HP_TOTAL 2
+#define MOVE_COUNTER 3
+#define SHOOT_COUNTER 4
 
 #define SIZE_ENEMY_1 1
 #define SIZE_ENEMY_2 2
-
+#define TYPE1_MOVE_COUNTER 7
+#define TYPE1_SHOOT_COUNTER 50
+#define TYPE2_MOVE_COUNTER 5
+#define TYPE2_SHOOT_COUNTER 50
 
 extern uint8_t timings_array[TIMINGS_ARRAY_LENGTH];
-extern uint8_t enemies_stats_array[TYPE5_ENEMY + 1][HP_TOTAL + 1];
+extern uint8_t enemies_stats_array[TYPE5_ENEMY + 1][SHOOT_COUNTER + 1];
 
 void initialize_game();
+void reset_game();
 
 #define LEFT_BORDER 5
 #define RIGHT_BORDER 4

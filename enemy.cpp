@@ -10,11 +10,13 @@ void generate_enemy(){
 	// is dit correct toevoegen?
 	Enemy enemy;
 	enemy.pos.x = RIGHT_BORDER; 
-	enemy.pos.y = rand() % 5; 
+	enemy.pos.y = rand() % 5;
 	if(type_1){
 		enemy.type = TYPE1_ENEMY;
+		type_1 = 0;
 	} else {
 		enemy.type = TYPE2_ENEMY;
+		type_1 = 1;
 	}
 	game.enemies_array[array_enemies_length++] = enemy;
 
