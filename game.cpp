@@ -9,7 +9,7 @@ uint8_t array_bullets_allocated ;
            
 uint8_t array_enemies_length;
 uint8_t array_bullets_length;
-uint8_t enemies_stats_array[TYPE5_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];
+uint8_t enemies_stats_array[TYPE4_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];
 
 void initialize_game(){
 	player.x = 0;
@@ -27,14 +27,15 @@ void initialize_game(){
 	/**
 	 * Fill enemies Stats array
 	 */
-	enemies_stats_array[TYPE1_ENEMY][SIZE_ENEMY] = SIZE_ENEMY_1; 
-	enemies_stats_array[TYPE1_ENEMY][BASE_MOVE_COUNTER] = TYPE1_MOVE_COUNTER; 
-	enemies_stats_array[TYPE1_ENEMY][CURRENT_MOVE_COUNTER] = TYPE1_MOVE_COUNTER; 
+	enemies_stats_array[TYPE1_ENEMY][SIZE] = SIZE_TYPE1; 
 	enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] = TYPE1_SHOOT_COUNTER; 
+	enemies_stats_array[TYPE1_ENEMY][BASE_SHOOT_COUNTER] = TYPE2_SHOOT_COUNTER; 
 
-	// enemies_stats_array[TYPE2_ENEMY][SIZE_ENEMY] = SIZE_ENEMY_2;
-	 // enemies_stats_array[TYPE1_ENEMY][MOVE_COUNTER] = TYPE1_MOVE_COUNTER; 
-	// enemies_stats_array[TYPE2_ENEMY][MOVE_COUNTER] = TYPE2_MOVE_COUNTER; 
+	enemies_stats_array[TYPE2_ENEMY][SIZE] = SIZE_TYPE2; 
+	enemies_stats_array[TYPE2_ENEMY][CURRENT_SHOOT_COUNTER] = TYPE2_SHOOT_COUNTER; 
+	enemies_stats_array[TYPE2_ENEMY][BASE_SHOOT_COUNTER] = TYPE2_SHOOT_COUNTER; 
+	enemies_stats_array[TYPE2_ENEMY][CURRENT_MOVE_COUNTER] = TYPE2_MOVE_COUNTER;
+	enemies_stats_array[TYPE2_ENEMY][BASE_MOVE_COUNTER] = TYPE2_MOVE_COUNTER; 
 
 	/**
 	 * Fill counters Array

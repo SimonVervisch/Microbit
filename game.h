@@ -45,8 +45,6 @@ extern Game game;
 //
 #define GENERATE_ENEMY_COUNTER 8 //2000 ms
 //ENEMIES_COUNTERS
-#define TYPE1_MOVE_COUNTER 8
-#define TYPE1_SHOOT_COUNTER 6
 // #define TYPE2_MOVE_COUNTER 5
 // #define TYPE2_SHOOT_COUNTER 50
 
@@ -64,9 +62,8 @@ extern Game game;
 #define TYPE2_ENEMY 1
 #define TYPE3_ENEMY 2
 #define TYPE4_ENEMY 3
-#define TYPE5_ENEMY 4
 
-#define SIZE_ENEMY 0
+#define SIZE 0
 #define SCORE_WHEN_DEATH 1
 #define HP_TOTAL 2
 #define BASE_MOVE_COUNTER 3
@@ -74,12 +71,17 @@ extern Game game;
 #define CURRENT_MOVE_COUNTER 5 
 #define CURRENT_SHOOT_COUNTER 6
 
-#define SIZE_ENEMY_1 1
-#define SIZE_ENEMY_2 2
+#define SIZE_TYPE1 1
+#define SIZE_TYPE2 2
+
+// #define TYPE1_MOVE_COUNTER NOT NECESSARY
+#define TYPE1_SHOOT_COUNTER 6
+#define TYPE2_MOVE_COUNTER 9
+#define TYPE2_SHOOT_COUNTER 5
 
 
 extern uint8_t counters_array[TIMINGS_ARRAY_LENGTH];
-extern uint8_t enemies_stats_array[TYPE5_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];
+extern uint8_t enemies_stats_array[TYPE4_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];
 
 void initialize_game();
 void reset_game();

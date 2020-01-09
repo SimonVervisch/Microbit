@@ -1,7 +1,7 @@
 #include "enemy.h"
 #include "game.h"
 
- 
+
 void generate_enemy(){
 	static uint8_t type_1 = 1;
 	if(array_enemies_length == array_enemies_allocated){
@@ -22,12 +22,14 @@ void generate_enemy(){
 
 }
 
-void move_enemies(){
+void move_enemies(uint8_t type){
 	for(uint8_t i = 0; i < array_enemies_length; i++){
-		if(game.enemies_array[i].pos.x == 0){
-			game.enemies_array[i].pos.x = LEFT_BORDER;
-		} else {
-			game.enemies_array[i].pos.x -= 1;
+		if(game.enemies_array[i].type == type){
+			if(game.enemies_array[i].pos.x == 0){
+				game.enemies_array[i].pos.x = LEFT_BORDER;
+			} else {
+				game.enemies_array[i].pos.x -= 1;
+			}
 		}
 	}
 	for(uint8_t i = 0; i < array_bullets_length; i++){

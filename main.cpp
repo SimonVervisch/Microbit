@@ -40,13 +40,18 @@ int check_enemies_base_rate(){
 }
 
 void check_enemies_movement(){
-	if(enemies_stats_array[TYPE1_ENEMY][CURRENT_MOVE_COUNTER] == 1){
-		// here is the collision detection as well
-		move_enemies();
-		enemies_stats_array[TYPE1_ENEMY][CURRENT_MOVE_COUNTER] = TYPE1_MOVE_COUNTER;
-	} else {
-		enemies_stats_array[TYPE1_ENEMY][CURRENT_MOVE_COUNTER] -= 1;
+	// START with type_2, because 1 doesn't move
+	for(uint8_t type = TYPE2_ENEMY;type<TYPE2_ENEMY + 1; type++){
+		if(enemies_stats_array[type][CURRENT_MOVE_COUNTER] == 1){
+			// here is the collision detection as well
+			move_enemies(type);
+			enemies_stats_array[type][CURRENT_MOVE_COUNTER] = enemies_stats_array[type][BASE_MOVE_COUNTER];
+		} else {
+			enemies_stats_array[type][CURRENT_MOVE_COUNTER] -= 1;
+		}
+
 	}
+
 
 }
 
@@ -62,7 +67,6 @@ void check_enemy_generation(){
 
 void check_enemy_shoot(){
 	if(enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] == 1){
-		uBit.display.print("TEST");
 		for(uint8_t i = 0; i < array_enemies_length; i++){
 			add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y);
 		}
@@ -91,14 +95,14 @@ void space_invaders(){
 	generate_enemy();
 
 	while(1){
-		//divide by 256 or shift 7 to right
+		//divide by 256 or shift 8 to right
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 8);
 
 		if(check_bullets_movement()){
 			if(check_enemies_base_rate()){
-				// check_enemies_movement();
+				check_enemies_movement();
 				check_enemy_generation();
-				check_enemy_shoot();
+				// check_enemy_shoot();
 
 
 			}
