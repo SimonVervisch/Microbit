@@ -35,23 +35,7 @@ void move_bullets(){
 	}
 
 	//collision detection
-	for(uint8_t i = 0; i < array_bullets_length; i++){
-		Bullet bullet = game.bullets_array[i];
-		//Skip if this bullet 
-		if(!bullet.player_bullet){ 
-			continue;
-		}
-		for(uint8_t j = 0; j < array_enemies_length; j++){
-			Enemy enemy = game.enemies_array[j];
-			if(enemy.pos.x == bullet.x && enemy.pos.y == bullet.y){
-				game.enemies_array[j].pos.x = LEFT_BORDER;
-				game.bullets_array[i].x = RIGHT_BORDER + 1; //move out of field
-				break;
-			}
-		}
-		clean_enemies_array();
-		clean_bullets_array();
-	}
+	general_collision_detection();
 
 
 

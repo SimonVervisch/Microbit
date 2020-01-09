@@ -85,6 +85,7 @@ extern uint8_t enemies_stats_array[TYPE4_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];
 
 void initialize_game();
 void reset_game();
+void general_collision_detection();
 
 #define LEFT_BORDER 6
 #define RIGHT_BORDER 4

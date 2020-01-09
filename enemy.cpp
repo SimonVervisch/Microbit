@@ -32,22 +32,7 @@ void move_enemies(uint8_t type){
 			}
 		}
 	}
-	for(uint8_t i = 0; i < array_bullets_length; i++){
-		Bullet bullet = game.bullets_array[i];
-		if(!bullet.player_bullet){
-			continue;
-		}
-		for(uint8_t j = 0; j < array_enemies_length; j++){
-			Enemy enemy = game.enemies_array[j];
-			if(enemy.pos.x == bullet.x && enemy.pos.y == bullet.y){
-				game.enemies_array[j].pos.x = LEFT_BORDER;
-				game.bullets_array[i].x = RIGHT_BORDER + 1; //move out of field
-				break;
-			}
-		}
-		clean_bullets_array();
-		clean_enemies_array();
-	}
+	general_collision_detection();
 
 	for(uint8_t i = 0; i< array_enemies_length; i++){
 		if(game.enemies_array[i].pos.x == LEFT_BORDER){
@@ -56,6 +41,8 @@ void move_enemies(uint8_t type){
 	}
 
 }
+
+
 void clean_enemies_array(){
 	for(uint8_t i = 0; i< array_enemies_length; i++){
 
