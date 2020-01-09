@@ -13,7 +13,6 @@ uint8_t enemies_stats_array[TYPE4_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];
 
 void initialize_game(){
 	player.x = 0;
-	player.y = 2;
 
 	array_enemies_allocated = 10;
 	array_bullets_allocated = 10;

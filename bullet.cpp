@@ -13,7 +13,6 @@ void add_bullet(uint8_t player_bullet,uint8_t shooter_x, uint8_t shooter_y){ // 
 	bullet.player_bullet = player_bullet;
 	bullet.x = shooter_x;
 	bullet.y = shooter_y;
-	// player_bullet is boolean
 
 	game.bullets_array[array_bullets_length++] = bullet;
 

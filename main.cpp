@@ -67,8 +67,13 @@ void check_enemy_generation(){
 
 void check_enemy_shoot(){
 	if(enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] == 1){
+
 		for(uint8_t i = 0; i < array_enemies_length; i++){
-			add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y);
+			Enemy enemy = game.enemies_array[i];
+			uint8_t counter = enemies_stats_array[enemy.type][SIZE];
+			while(counter > 0){
+				add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y + --counter);
+			}
 		}
 
 		enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] = TYPE1_SHOOT_COUNTER;
@@ -103,16 +108,16 @@ void space_invaders(){
 
 		if(check_bullets_movement()){
 			if(check_enemies_base_rate()){
-				check_enemies_movement();
+				//check_enemies_movement();
 				check_enemy_generation();
-				// check_enemy_shoot();
+				check_enemy_shoot();
 
 
 			}
 		}
 		uBit.display.image.clear();
 		player.y = y;
-		
+
 		//draw Functions
 		uBit.display.image.setPixelValue(player.x, y, 255);
 		draw_enemies();
