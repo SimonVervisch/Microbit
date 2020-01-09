@@ -17,6 +17,10 @@ void add_bullet(uint8_t player_bullet,uint8_t shooter_x, uint8_t shooter_y){ // 
 
 	game.bullets_array[array_bullets_length++] = bullet;
 
+	// if(!player_bullet){
+	// 	uBit.display.printAsync(array_bullets_length + '0');
+	// }
+
 }
 void move_bullets(){
 

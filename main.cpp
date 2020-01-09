@@ -4,19 +4,13 @@
 
 uint8_t counters_array[TIMINGS_ARRAY_LENGTH];
 
-
 void onButtonB(MicroBitEvent e){
-	add_bullet(1, player.pos.x, player.pos.y);
+	add_bullet(1, player.x, player.y);
 }
 void onButtonA(MicroBitEvent e){
 	reset_game();
 }
 
-// scheid input, logica en display
-// Dus BUTTONS
-// CHECK
-// DISPLAY
-//
 int check_bullets_movement(){
 	if(counters_array[BULLETS] == 1){
 		move_bullets();
@@ -68,6 +62,7 @@ void check_enemy_generation(){
 
 void check_enemy_shoot(){
 	if(enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] == 1){
+		uBit.display.print("TEST");
 		for(uint8_t i = 0; i < array_enemies_length; i++){
 			add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y);
 		}
@@ -109,9 +104,9 @@ void space_invaders(){
 			}
 		}
 		uBit.display.image.clear();
-		player.pos.y = y;
+		player.y = y;
 		//draw Functions
-		uBit.display.image.setPixelValue(player.pos.x, y, 255);
+		uBit.display.image.setPixelValue(player.x, y, 255);
 		draw_enemies();
 		draw_bullets();
 		uBit.sleep(BASE_RATE_TIMING);
