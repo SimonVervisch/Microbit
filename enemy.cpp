@@ -8,14 +8,19 @@ void generate_enemy(){
 		array_enemies_allocated += 2;
 		game.enemies_array = (Enemy *)realloc(game.enemies_array, sizeof(Enemy) * array_enemies_allocated);
 	}
-	/*
-	if(--timings_array[BOSS_COUNTER] == 1){
+	if(--counters_array[BOSS_COUNTER] == 1){
+		type = TYPE4_ENEMY;
+		counters_array[BOSS_COUNTER] = BOSS_BASE_COUNTER;
+	} else{
+		type = rand() % 3;
 
 	}
-	*/
+
 	Enemy enemy;
 	enemy.pos.x = RIGHT_BORDER; 
-	enemy.pos.y = rand() % (5 - enemies_stats_array[type][SIZE]);
+	enemy.pos.y = rand() % (6 - enemies_stats_array[type][SIZE] );
+
+
 	if(type){
 		enemy.type = type;
 		type = 0;

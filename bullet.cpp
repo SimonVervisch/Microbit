@@ -2,7 +2,9 @@
 #include "game.h"
 #include "player.h"
 
-
+/**
+ * First checks whether dynamic arraysize has to be increased
+ */
 void add_bullet(uint8_t player_bullet,uint8_t shooter_x, uint8_t shooter_y){ // at the moment only a player can fire
 	if(array_bullets_length == array_bullets_allocated){
 		array_bullets_allocated += 2;
@@ -39,6 +41,9 @@ void move_bullets(){
 
 
 }
+/**
+ * removes bullets that aren't needed anymore
+ */
 void clean_bullets_array(){
 	for(uint8_t i = 0; i< array_bullets_length; i++){
 		//if current bullet can be removed, make array counter

@@ -16,6 +16,20 @@ uint8_t * encode_player(){ // change size
 	array_player[1] = byte_2;
 	return array_player;
 }
+void decode_player(uint8_t *array){ 
+
+	uint8_t y_mask = 	0b00111000; 
+	uint8_t lives_mask = 	0b00000111; 
+	uint8_t shifted_y = y_mask & array[0];
+
+
+	player.x = 0;
+	// player.y = shifted_y >>3;
+	player.lives = lives_mask & array[0];
+	game.score = array[1];
+
+
+} 
 
 
 //ENEMY-REPRESENTATION - 000T THHH - 0YYY XXXB
@@ -56,40 +70,6 @@ uint8_t *encode_enemies(){ // change size key
 
 	return array_enemies;
 }
-
-void encode_game(){
-	uint8_t *array_player = encode_player(); 
-	uint8_t *array_enemies = encode_enemies(); 
-
-	uint8_t array_total[32] = {0};
-
-	for(uint8_t i = 0; i< 2; i++){
-		array_total[i] = array_player[i];
-	}
-	for(int i = 2; i < 32; i++){
-		array_total[i] = array_enemies[i - 2];
-	}
-	uBit.storage.put("key", array_total, 32);
-
-	free(array_player);
-	free(array_enemies);
-}
-
-// PLAYER-REPRESENTATION: 00YY YLLL - SSSS SSSS -> Y = Y-coordinate, L = lives, S is score
-void decode_player(uint8_t *array){ 
-
-	uint8_t y_mask = 	0b00111000; 
-	uint8_t lives_mask = 	0b00000111; 
-	uint8_t shifted_y = y_mask & array[0];
-
-
-	player.x = 0;
-	// player.y = shifted_y >>3;
-	player.lives = lives_mask & array[0];
-	game.score = array[1];
-
-
-} 
 //ENEMY-REPRESENTATION - 000T THHH - 0YYY XXXB
 // -> H = Hitpoints left, B = BOOLEAN last in array, Y = y-coordinate, X = x-coordinate
 void decode_enemies(uint8_t *array){ 
@@ -138,6 +118,25 @@ void decode_enemies(uint8_t *array){
 
 
 }
+
+void encode_game(){
+	uint8_t *array_player = encode_player(); 
+	uint8_t *array_enemies = encode_enemies(); 
+
+	uint8_t array_total[32] = {0};
+
+	for(uint8_t i = 0; i< 2; i++){
+		array_total[i] = array_player[i];
+	}
+	for(int i = 2; i < 32; i++){
+		array_total[i] = array_enemies[i - 2];
+	}
+	uBit.storage.put("key", array_total, 32);
+
+	free(array_player);
+	free(array_enemies);
+}
+
 
 void decode_game(){
 	free(game.enemies_array);

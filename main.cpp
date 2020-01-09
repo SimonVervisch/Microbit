@@ -4,14 +4,15 @@
 #include "io.h"
 
 uint8_t counters_array[TIMINGS_ARRAY_LENGTH];
-
+/**
+ * Button-event initialization
+ */
 void onButtonB(MicroBitEvent e){
 	add_bullet(1, player.x, player.y);
 }
 void onButtonA(MicroBitEvent e){
 	initialize_new_game();
 }
-
 void onButtonALongPress(MicroBitEvent e){
 	encode_game();
 }
@@ -19,7 +20,10 @@ void onButtonBLongPress(MicroBitEvent e){
 	decode_game();
 }
 
-
+/**
+ * check whether bullet is allowed to move. 
+ * returns boolean, because enemy movement is based on this counter
+ */
 int check_bullets_movement(){
 	if(counters_array[BULLETS] == 1){
 		move_bullets();
@@ -30,13 +34,15 @@ int check_bullets_movement(){
 		return 0;
 	}
 }
-
 void draw_bullets(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
 		Bullet bullet = game.bullets_array[i];
 		uBit.display.image.setPixelValue(bullet.x,bullet.y, 255);
 	}
 }
+/**
+ * The enemy base rate is a counter on which enemy_shoot/enemy_move is based
+ */
 int check_enemies_base_rate(){
 	if(counters_array[ENEMY_BASE] == 1){
 		counters_array[ENEMY_BASE] = ENEMY_BASE_COUNTER;
@@ -47,12 +53,13 @@ int check_enemies_base_rate(){
 	}
 
 }
-
+/**
+ * Check if enemies are allowed to move
+ */
 void check_enemies_movement(){
 	// START with type_2, because 1 doesn't move
 	for(uint8_t type = TYPE2_ENEMY;type<TYPE2_ENEMY + 1; type++){
 		if(enemies_stats_array[type][CURRENT_MOVE_COUNTER] == 1){
-			// here is the collision detection as well
 			move_enemies(type);
 			enemies_stats_array[type][CURRENT_MOVE_COUNTER] = enemies_stats_array[type][BASE_MOVE_COUNTER];
 		} else {
@@ -63,7 +70,9 @@ void check_enemies_movement(){
 
 
 }
-
+/**
+ * Check if enemies are allowed to be made
+ */
 void check_enemy_generation(){
 	if(counters_array[GENERATE_ENEMY] == 1){
 		generate_enemy();
@@ -75,19 +84,28 @@ void check_enemy_generation(){
 }
 
 void check_enemy_shoot(){
-	if(enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] == 1){
+	//check for all enemy types
+	for(uint8_t type = TYPE1_ENEMY; type<TYPE4_ENEMY + 1; type++){
+		if(enemies_stats_array[type][CURRENT_SHOOT_COUNTER] == 1){
+			for(uint8_t i = 0; i < array_enemies_length; i++){
+				Enemy enemy = game.enemies_array[i];
+				//conditional check if the selected enemy is from the current type
+				if(enemy.type == type){
+					uint8_t counter = enemies_stats_array[enemy.type][SIZE];
+					while(counter > 0){
+						add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y + --counter);
+					}
 
-		for(uint8_t i = 0; i < array_enemies_length; i++){
-			Enemy enemy = game.enemies_array[i];
-			uint8_t counter = enemies_stats_array[enemy.type][SIZE];
-			while(counter > 0){
-				add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y + --counter);
+				} else {
+					continue;
+				}
 			}
+
+			enemies_stats_array[type][CURRENT_SHOOT_COUNTER] = enemies_stats_array[type][BASE_SHOOT_COUNTER];
+		} else {
+			enemies_stats_array[type][CURRENT_SHOOT_COUNTER] -= 1;
 		}
 
-		enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] = TYPE1_SHOOT_COUNTER;
-	} else {
-		enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] -= 1;
 	}
 
 }
@@ -119,19 +137,18 @@ void space_invaders(){
 		//divide by 256 or shift 8 to right
 		uint8_t y = gravity_to_pixel(uBit.accelerometer.getY() >> 8);
 
+		// special loop. Counters are based upon each other
 		if(check_bullets_movement()){
 			if(check_enemies_base_rate()){
 				// check_enemies_movement();
 				check_enemy_generation();
-				check_enemy_shoot();
+				// check_enemy_shoot();
 
 
 			}
 		}
-		uBit.display.image.clear();
+		uBit.display.clear();
 		player.y = y;
-
-		//draw Functions
 		uBit.display.image.setPixelValue(player.x, y, 255);
 		draw_enemies();
 		draw_bullets();
@@ -148,11 +165,8 @@ int main()
 	// initialise the micro:bit runtime.
 	uBit.init();
 
-	//
-	// Periodically read the accelerometer x and y values, and plot a 
-	// scaled version of this ont the display. 
-	//
 	space_invaders();
+	release_fiber();
 }
 
 

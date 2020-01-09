@@ -1,5 +1,5 @@
 #include "player.h"
-
+//Accelerometer to correct pixel
 uint8_t gravity_to_pixel(int8_t value){
     uint8_t x = 0;
     uint8_t first = 1;
@@ -10,7 +10,7 @@ uint8_t gravity_to_pixel(int8_t value){
         x++;
     if (value > first * -1)
         x++;
-    if (value > first) // fix calibratie
+    if (value > first) 
         x++;
     if (value > second)
         x++;
