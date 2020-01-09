@@ -2,7 +2,7 @@
 #define POINT_H_
 #include <stdio.h>
 typedef struct point{
-	uint8_t x;
-	uint8_t y;
+	uint8_t x:3;
+	uint8_t y:3;
 } Point;
 #endif

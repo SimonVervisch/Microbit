@@ -1,6 +1,7 @@
 #include "MicroBit.h"
 #include "player.h"
 #include "game.h"
+#include "io.h"
 
 uint8_t counters_array[TIMINGS_ARRAY_LENGTH];
 
@@ -8,8 +9,17 @@ void onButtonB(MicroBitEvent e){
 	add_bullet(1, player.x, player.y);
 }
 void onButtonA(MicroBitEvent e){
-	reset_game();
+	initialize_new_game();
 }
+
+void onButtonALongPress(MicroBitEvent e){
+	encode_game();
+}
+void onButtonBLongPress(MicroBitEvent e){
+	decode_game();
+}
+
+
 
 int check_bullets_movement(){
 	if(counters_array[BULLETS] == 1){
@@ -97,6 +107,9 @@ void draw_enemies(){
 void space_invaders(){
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_BUTTON_EVT_CLICK, onButtonB);
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonA);
+
+	uBit.messageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_BUTTON_EVT_LONG_CLICK, onButtonBLongPress);
+	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_LONG_CLICK, onButtonALongPress);
 	initialize_game();
 
 	srand(time(NULL));
@@ -109,7 +122,7 @@ void space_invaders(){
 		if(check_bullets_movement()){
 			if(check_enemies_base_rate()){
 				// check_enemies_movement();
-				// check_enemy_generation();
+				check_enemy_generation();
 				check_enemy_shoot();
 
 

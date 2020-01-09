@@ -4,8 +4,8 @@
 Game game;
 MicroBit uBit;
 Player player;
-uint8_t array_enemies_allocated ;
-uint8_t array_bullets_allocated ;
+uint8_t array_enemies_allocated;
+uint8_t array_bullets_allocated;
 
 uint8_t array_enemies_length;
 uint8_t array_bullets_length;
@@ -45,9 +45,32 @@ void initialize_game(){
 	counters_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
 }
 
+void initialize_new_game(){
+
+	char string[10];
+	uBit.display.print("Game Over");
+	sprintf(string, "%d", game.score);
+	uBit.display.print(string);
+	reset_game();
+
+}
+
+void reset_game(){
+	free(game.enemies_array);
+	free(game.bullets_array);
+	initialize_game();
+}
+
 void player_dead(){
-	player.lives -= 1;
-	uBit.display.print("Lost one life");
+	if(player.lives >= 0){
+		player.lives -= 1;
+		char lives[10];
+		sprintf(lives, "%d", player.lives);
+		uBit.display.print(lives);
+		reset_game();
+	} else {
+		initialize_new_game();
+	}
 }
 
 void general_collision_detection(){
@@ -57,7 +80,7 @@ void general_collision_detection(){
 			if(bullet.x == player.x && bullet.y == player.y){
 				player_dead();
 
-			} else{
+			} else {
 				for(uint8_t k = 0; k < array_bullets_length; k++){
 					Bullet bullet2 = game.bullets_array[k];
 					if(k == i){
@@ -90,21 +113,21 @@ void general_collision_detection(){
 	}
 }
 
-void reset_game(){
-	uBit.display.print("You Ded!");
-	free(game.enemies_array);
-	free(game.bullets_array);
-	initialize_game();
-}
 
-void start_after_loading(){
+void initialize_after_load(){
 	array_bullets_allocated = 10;
 	array_bullets_length = 0;
 
-	game.bullets_array = (Bullet *)malloc(array_bullets_allocated * sizeof(Bullet));
+	game.bullets_array = (Bullet *)calloc(array_bullets_allocated , sizeof(Bullet));
 	counters_array[BULLETS] = BULLETS_COUNTER;
 	counters_array[ENEMY_BASE] = ENEMY_BASE_COUNTER;
 	counters_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
+
+	enemies_stats_array[TYPE1_ENEMY][CURRENT_SHOOT_COUNTER] = TYPE1_SHOOT_COUNTER; 
+
+	enemies_stats_array[TYPE2_ENEMY][CURRENT_SHOOT_COUNTER] = TYPE2_SHOOT_COUNTER; 
+	enemies_stats_array[TYPE2_ENEMY][CURRENT_MOVE_COUNTER] = TYPE2_MOVE_COUNTER;
+
 }
 
 

@@ -9,7 +9,7 @@
 typedef struct enemy{
 	Point pos;
 	// uint8_t speed; // is encoded in timers
-	uint8_t type: 3;
+	uint8_t type: 2;
 	uint8_t hitpoints_left: 3;
 } Enemy;
 

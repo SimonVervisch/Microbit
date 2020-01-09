@@ -36,7 +36,7 @@ void move_enemies(uint8_t type){
 
 	for(uint8_t i = 0; i< array_enemies_length; i++){
 		if(game.enemies_array[i].pos.x == LEFT_BORDER){
-			reset_game();
+			player_dead();
 		}
 	}
 

@@ -55,7 +55,8 @@ extern Game game;
 #define TIMINGS_ARRAY_LENGTH 12
 #define BULLETS 0 
 #define ENEMY_BASE 1
-#define GENERATE_ENEMY 10
+#define GENERATE_ENEMY 2
+#define BOSS_COUNTER 3
 
 
 #define TYPE1_ENEMY 0
@@ -79,17 +80,18 @@ extern Game game;
 #define TYPE2_MOVE_COUNTER 9
 #define TYPE2_SHOOT_COUNTER 5
 
-
 extern uint8_t counters_array[TIMINGS_ARRAY_LENGTH];
 extern uint8_t enemies_stats_array[TYPE4_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];
 
 void initialize_game();
+void initialize_new_game();
+void initialize_after_load();
 void reset_game();
 void general_collision_detection();
+void player_dead();
 
 #define LEFT_BORDER 6
 #define RIGHT_BORDER 4
 #define DEBUG_MODE 0
-
 
 #endif
