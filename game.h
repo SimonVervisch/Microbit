@@ -39,7 +39,7 @@ extern Game game;
 // This is a counter that is 500 ms. You have enemies that shoot faster than they move and the opposite. Generation speeds also is something in between
 #define ENEMY_BASE_COUNTER 10
 #define GENERATE_ENEMY_COUNTER 8 //2000 ms
-#define BOSS_BASE_COUNTER 2
+#define BOSS_BASE_COUNTER 10
 
 
 /**

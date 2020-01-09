@@ -140,9 +140,9 @@ void space_invaders(){
 		// special loop. Counters are based upon each other
 		if(check_bullets_movement()){
 			if(check_enemies_base_rate()){
-				// check_enemies_movement();
+				check_enemies_movement();
 				check_enemy_generation();
-				// check_enemy_shoot();
+				check_enemy_shoot();
 
 
 			}
