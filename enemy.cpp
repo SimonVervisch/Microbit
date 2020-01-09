@@ -3,20 +3,20 @@
 
 
 void generate_enemy(){
-	static uint8_t type_1 = 1;
+	static uint8_t type = 1;
 	if(array_enemies_length == array_enemies_allocated){
 		array_enemies_allocated += 2;
 		game.enemies_array = (Enemy *)realloc(game.enemies_array, sizeof(Enemy) * array_enemies_allocated);
 	}
 	Enemy enemy;
 	enemy.pos.x = RIGHT_BORDER; 
-	enemy.pos.y = rand() % 5;
-	if(type_1){
-		enemy.type = TYPE1_ENEMY;
-		type_1 = 0;
+	enemy.pos.y = rand() % (5 - enemies_stats_array[type][SIZE]);
+	if(type){
+		enemy.type = type;
+		type = 0;
 	} else {
-		enemy.type = TYPE2_ENEMY;
-		type_1 = 1;
+		enemy.type = type;
+		type = 1;
 	}
 	game.enemies_array[array_enemies_length++] = enemy;
 
