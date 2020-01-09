@@ -108,8 +108,8 @@ void space_invaders(){
 
 		if(check_bullets_movement()){
 			if(check_enemies_base_rate()){
-				//check_enemies_movement();
-				check_enemy_generation();
+				// check_enemies_movement();
+				// check_enemy_generation();
 				check_enemy_shoot();
 
 

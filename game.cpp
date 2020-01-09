@@ -13,6 +13,7 @@ uint8_t enemies_stats_array[TYPE4_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];
 
 void initialize_game(){
 	player.x = 0;
+	player.lives = 3;
 
 	array_enemies_allocated = 10;
 	array_bullets_allocated = 10;
@@ -44,11 +45,30 @@ void initialize_game(){
 	counters_array[GENERATE_ENEMY] = GENERATE_ENEMY_COUNTER;
 }
 
+void player_dead(){
+	player.lives -= 1;
+	uBit.display.print("Lost one life");
+}
+
 void general_collision_detection(){
 	for(uint8_t i = 0; i < array_bullets_length; i++){
 		Bullet bullet = game.bullets_array[i];
 		if(!bullet.player_bullet){
-			continue;
+			if(bullet.x == player.x && bullet.y == player.y){
+				player_dead();
+
+			} else{
+				for(uint8_t k = 0; k < array_bullets_length; k++){
+					Bullet bullet2 = game.bullets_array[k];
+					if(k == i){
+						continue;
+					}
+					if(bullet2.x == bullet.x && bullet2.y == bullet.y){
+						game.bullets_array[i].x = RIGHT_BORDER + 1;
+						game.bullets_array[k].x = RIGHT_BORDER + 1;
+					}
+				}
+			}
 		}
 		for(uint8_t j = 0; j < array_enemies_length; j++){
 			Enemy enemy = game.enemies_array[j];
