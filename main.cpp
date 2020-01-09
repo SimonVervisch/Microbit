@@ -81,10 +81,9 @@ void check_enemy_shoot(){
 void draw_enemies(){
 	for(uint8_t i = 0; i < array_enemies_length; i++){
 		Enemy enemy = game.enemies_array[i];
-		uint8_t counter = enemy.type;
-		uBit.display.image.setPixelValue(enemy.pos.x,enemy.pos.y, 255);
+		uint8_t counter = enemies_stats_array[enemy.type][SIZE];
 		while(counter > 0){
-			uBit.display.image.setPixelValue(enemy.pos.x,enemy.pos.y + counter--, 255);
+			uBit.display.image.setPixelValue(enemy.pos.x,enemy.pos.y + --counter, 255);
 		}
 	}
 }

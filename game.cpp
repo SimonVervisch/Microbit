@@ -53,17 +53,22 @@ void general_collision_detection(){
 		}
 		for(uint8_t j = 0; j < array_enemies_length; j++){
 			Enemy enemy = game.enemies_array[j];
-			if(enemy.pos.x == bullet.x && enemy.pos.y == bullet.y){
-				game.enemies_array[j].pos.x = LEFT_BORDER;
-				game.bullets_array[i].x = RIGHT_BORDER + 1; //move out of field
-				break;
+			uint8_t counter = enemies_stats_array[enemy.type][SIZE];
+			if(enemy.pos.x == bullet.x){
+				while(counter > 0){
+					if((enemy.pos.y + --counter) == bullet.y){
+						game.enemies_array[j].pos.x = LEFT_BORDER;
+						game.bullets_array[i].x = RIGHT_BORDER + 1; //move out of field
+						break;
+
+					}
+
+				}
 			}
 		}
 		clean_bullets_array();
 		clean_enemies_array();
 	}
-
-
 }
 
 void reset_game(){
