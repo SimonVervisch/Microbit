@@ -66,7 +66,7 @@ extern Game game;
 #define TYPE4_ENEMY 3
 
 #define SIZE 0
-#define SCORE_WHEN_DEATH 1
+#define SCORE 1
 #define HP_TOTAL 2
 #define BASE_MOVE_COUNTER 3
 #define BASE_SHOOT_COUNTER 4
@@ -75,11 +75,30 @@ extern Game game;
 
 #define SIZE_TYPE1 1
 #define SIZE_TYPE2 2
+#define SIZE_TYPE3 2
+#define SIZE_TYPE4 4
+
+#define SCORE_TYPE1 1
+#define SCORE_TYPE2 2
+#define SCORE_TYPE3 3
+#define SCORE_TYPE4 6
+
+#define HP_TYPE1 0
+#define HP_TYPE2 2
+#define HP_TYPE3 2
+#define HP_TYPE4 7
 
 // #define TYPE1_MOVE_COUNTER NOT NECESSARY
 #define TYPE1_SHOOT_COUNTER 6
+
 #define TYPE2_MOVE_COUNTER 9
 #define TYPE2_SHOOT_COUNTER 5
+
+#define TYPE3_MOVE_COUNTER 6
+#define TYPE3_SHOOT_COUNTER 6
+
+#define TYPE4_MOVE_COUNTER 20
+#define TYPE4_SHOOT_COUNTER 10
 
 extern uint8_t counters_array[TIMINGS_ARRAY_LENGTH];
 extern uint8_t enemies_stats_array[TYPE4_ENEMY + 1][CURRENT_SHOOT_COUNTER + 1];

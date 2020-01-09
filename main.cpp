@@ -20,7 +20,6 @@ void onButtonBLongPress(MicroBitEvent e){
 }
 
 
-
 int check_bullets_movement(){
 	if(counters_array[BULLETS] == 1){
 		move_bullets();
@@ -82,7 +81,6 @@ void check_enemy_shoot(){
 			Enemy enemy = game.enemies_array[i];
 			uint8_t counter = enemies_stats_array[enemy.type][SIZE];
 			while(counter > 0){
-				uBit.display.print("te");
 				add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y + --counter);
 			}
 		}
@@ -111,6 +109,7 @@ void space_invaders(){
 
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_BUTTON_EVT_LONG_CLICK, onButtonBLongPress);
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_LONG_CLICK, onButtonALongPress);
+	player.lives = 3;
 	initialize_game();
 
 	srand(time(NULL));

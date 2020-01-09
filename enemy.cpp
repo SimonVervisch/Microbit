@@ -23,6 +23,8 @@ void generate_enemy(){
 		enemy.type = type;
 		type = 1;
 	}
+
+	enemy.hitpoints_left = enemies_stats_array[type][HP_TOTAL];
 	game.enemies_array[array_enemies_length++] = enemy;
 
 }
