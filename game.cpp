@@ -66,7 +66,7 @@ void player_dead(){
 		player.lives -= 1;
 		char lives[10];
 		sprintf(lives, "%d", player.lives);
-		uBit.display.print(lives);
+		uBit.display.print("dead");
 		reset_game();
 	} else {
 		initialize_new_game();
@@ -83,15 +83,19 @@ void general_collision_detection(){
 			} else {
 				for(uint8_t k = 0; k < array_bullets_length; k++){
 					Bullet bullet2 = game.bullets_array[k];
-					if(k == i){
-						continue;
-					}
-					if(bullet2.x == bullet.x && bullet2.y == bullet.y){
-						game.bullets_array[i].x = RIGHT_BORDER + 1;
-						game.bullets_array[k].x = RIGHT_BORDER + 1;
+					if(bullet2.player_bullet){
+						if(k == i){
+							continue;
+						}
+						if(bullet2.x == bullet.x && bullet2.y == bullet.y){
+							uBit.display.print("re");
+							game.bullets_array[i].x = RIGHT_BORDER + 1;
+							game.bullets_array[k].x = RIGHT_BORDER + 1;
+						}
 					}
 				}
 			}
+			continue;
 		}
 		for(uint8_t j = 0; j < array_enemies_length; j++){
 			Enemy enemy = game.enemies_array[j];

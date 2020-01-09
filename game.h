@@ -47,6 +47,7 @@ extern Game game;
 //ENEMIES_COUNTERS
 // #define TYPE2_MOVE_COUNTER 5
 // #define TYPE2_SHOOT_COUNTER 50
+#define BOSS_BASE_COUNTER 10
 
 
 /**

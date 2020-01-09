@@ -82,6 +82,7 @@ void check_enemy_shoot(){
 			Enemy enemy = game.enemies_array[i];
 			uint8_t counter = enemies_stats_array[enemy.type][SIZE];
 			while(counter > 0){
+				uBit.display.print("te");
 				add_bullet(0, game.enemies_array[i].pos.x,game.enemies_array[i].pos.y + --counter);
 			}
 		}

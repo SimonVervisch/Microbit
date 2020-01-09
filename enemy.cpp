@@ -8,6 +8,11 @@ void generate_enemy(){
 		array_enemies_allocated += 2;
 		game.enemies_array = (Enemy *)realloc(game.enemies_array, sizeof(Enemy) * array_enemies_allocated);
 	}
+	/*
+	if(--timings_array[BOSS_COUNTER] == 1){
+
+	}
+	*/
 	Enemy enemy;
 	enemy.pos.x = RIGHT_BORDER; 
 	enemy.pos.y = rand() % (5 - enemies_stats_array[type][SIZE]);
