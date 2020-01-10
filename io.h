@@ -7,4 +7,5 @@
 void decode_game();
 void encode_game();
 
+
 #endif

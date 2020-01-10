@@ -11,9 +11,6 @@ void onButtonB(MicroBitEvent e){
 	add_bullet(1, player.x, player.y);
 }
 void onButtonA(MicroBitEvent e){
-	initialize_new_game();
-}
-void onButtonALongPress(MicroBitEvent e){
 	encode_game();
 }
 void onButtonBLongPress(MicroBitEvent e){
@@ -58,7 +55,7 @@ int check_enemies_base_rate(){
  */
 void check_enemies_movement(){
 	// START with type_2, because 1 doesn't move
-	for(uint8_t type = TYPE2_ENEMY;type<TYPE2_ENEMY + 1; type++){
+	for(uint8_t type = TYPE2_ENEMY;type<TYPE4_ENEMY + 1; type++){
 		if(enemies_stats_array[type][CURRENT_MOVE_COUNTER] == 1){
 			move_enemies(type);
 			enemies_stats_array[type][CURRENT_MOVE_COUNTER] = enemies_stats_array[type][BASE_MOVE_COUNTER];
@@ -126,7 +123,7 @@ void space_invaders(){
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_CLICK, onButtonA);
 
 	uBit.messageBus.listen(MICROBIT_ID_BUTTON_B, MICROBIT_BUTTON_EVT_LONG_CLICK, onButtonBLongPress);
-	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_LONG_CLICK, onButtonALongPress);
+	uBit.messageBus.listen(MICROBIT_ID_BUTTON_A, MICROBIT_BUTTON_EVT_LONG_CLICK, onButtonA);
 	player.lives = 3;
 	initialize_game();
 
